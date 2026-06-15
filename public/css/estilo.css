@@ -1,14 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@font-face {
+    font-family: 'Ballet';
+    src: url(../assets/fonts/Ballet/Ballet-Regular-VariableFont_opsz.ttf);
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url(../assets/fonts/Manrope/Manrope-VariableFont_wght.ttf);
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NotoSerif';
+    src: url(../assets/fonts/Noto_Serif/NotoSerif-VariableFont_wdth\,wght.ttf);
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+.ballet {
+  font-family: 'Ballet', sans-serif;
+  color: #F9CF30;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  font-family: 'Manrope', sans-serif;
+  background-color: #121417;
 }
 
 :root {
-  --tamanho-header: 80px;
+  --tamanho-header: 60px;
   --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
@@ -23,7 +49,7 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  border-bottom: 1px solid #202226;
 }
 
 .header .container {
@@ -34,26 +60,43 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: #94a3b8;
+}
+
+.header img {
+  width: 25px;
+}
+
+.logo {
+  display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+}
+
+.logo img {
+  width: 25px;
 }
 
 .agora {
   font-weight: 800;
+
 }
 
 .navbar {
-  width: 300px;
+  width: 350px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
+  color: #94a3b8;
 }
 
 .titulo {
-  color: #32b9cd;
+  color: #F9CF30;
   width: fit-content;
   font-weight: 500;
+  font-size: 18px;
 }
 
 .header h1 {
@@ -65,12 +108,13 @@ body {
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: linear-gradient(#12141750, #16191dd0), url(../assets/imgs/main/background_home.webp);
   background-size: cover;
+  background-position: center;
 }
 
 .banner .container {
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100%;
 }
@@ -79,22 +123,55 @@ body {
   width: 50%;
   margin: 0;
   padding: 0;
-  font-size: 36px;
 }
 
 .banner .container span {
   font-weight: 800;
 }
 
+.titulo-banner h1 {
+  color: #ffffff;
+  width: fit-content;
+  font-weight: 900;
+  font-size: 75px;
+  margin: 20px 0 10px 0;
+}
+
+.titulo-banner p {
+  color: #94a3b8;
+  font-weight: 200;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
 /* MISSÃO VISÃO VALORES */
 
 .social {
-  background-color: #e5e5e5;
+  background-color: #1a1c1f;
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 80px 5%;
 }
+
+.social h1 {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: -25px;
+  margin-top: -25px;
+}
+
+.social p {
+  color: #94a3b8;
+}
+
 
 .social .container {
   justify-content: center;
+  display: flex;
+  gap: 24px;
+  width: 100%;
 }
 
 .box img {
@@ -108,6 +185,10 @@ body {
   padding: 30px 0;
 }
 
+.boxes {
+  gap: 24px;
+}
+
 .social p {
   text-align: center;
 }
@@ -115,22 +196,55 @@ body {
 .box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  background-color: #121417;
+  color: #fff;
+  border-radius: 24px;
+  padding: 32px 28px;
+  border-left: 3px solid #F9CF30;
 }
+
+.box h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #F9CF30;
+}
+
+.box h4 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.box span {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
 
 /* FOOTER */
 
 .footer {
-  background-color: #32b9cd;
+  background-color: #121417;
+  border-top: 1px solid #202226;
   height: 150px;
   color: #fff;
   display: flex;
   font-size: 15px;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
 }
 
 .footer .container {
-  justify-content: center;
-  text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #94a3b8;
+    margin: 0;
 }
 
 .footer .container .version {
@@ -141,8 +255,9 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: linear-gradient(#12141750, #16191dd0), url('../assets/imgs/main/background_home.webp');
   background-size: cover;
+  background-position: center;
 }
 
 .login .container {
@@ -153,12 +268,12 @@ body {
 
 .card {
   width: 50%;
-  background-color: #e5e5e5;
+  background-color: #121417;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: #F9CF30;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
@@ -183,15 +298,17 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
+    border: 1px solid #202226;
+  background-color: #1a1c1f;
+
   text-align: center;
   border-radius: 10px;
   margin: 0;
 }
 
 .formulario select {
-  border: 2px solid #32b9cd;
-  background-color: white;
+  border: 1px solid #202226;
+  background-color: #1a1c1f;
   color: gray;
   height: 36px;
   text-align: center;
@@ -208,13 +325,12 @@ body {
 
 .botao {
   cursor: pointer;
-  font-family: "Barlow", sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
   font-size: 18px;
-  color: #fff;
-  background-color: #ED145B;
+  color: #121417;
+  background-color: #F9CF30;
   width: 120px;
   height: 30px;
   align-self: center;
@@ -271,24 +387,10 @@ body {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
-}
-
-.btn {
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #ED145B;
-  width: 120px;
-  align-self: center;
-  margin-top: 5px;
+  color: #fff;
 }
 
 .loading-div {
