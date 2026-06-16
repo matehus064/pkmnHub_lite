@@ -1,24 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @font-face {
-    font-family: 'Ballet';
-    src: url(../assets/fonts/Ballet/Ballet-Regular-VariableFont_opsz.ttf);
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: 'Ballet';
+  src: url(../assets/fonts/Ballet/Ballet-Regular-VariableFont_opsz.ttf);
+  font-weight: 100 900;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Manrope';
-    src: url(../assets/fonts/Manrope/Manrope-VariableFont_wght.ttf);
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: 'Manrope';
+  src: url(../assets/fonts/Manrope/Manrope-VariableFont_wght.ttf);
+  font-weight: 100 900;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'NotoSerif';
-    src: url(../assets/fonts/Noto_Serif/NotoSerif-VariableFont_wdth\,wght.ttf);
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: 'NotoSerif';
+  src: url(../assets/fonts/Noto_Serif/NotoSerif-VariableFont_wdth\,wght.ttf);
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+
 }
 
 .ballet {
@@ -75,9 +80,9 @@ body {
 
 .logo {
   display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: bold;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
 }
 
 .logo img {
@@ -172,10 +177,10 @@ body {
 }
 
 .row {
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .wrapper {
@@ -186,16 +191,16 @@ body {
 }
 
 .preco {
-    font-weight: bold;
-    color: #F9CF30;
-    font-size: 25px;
-    margin-top: 5px;
+  font-weight: bold;
+  color: #F9CF30;
+  font-size: 25px;
+  margin-top: 5px;
 }
 
 .chart-wrapper {
-    flex: 1;
-    width: 100%;
-    position: relative;
+  flex: 1;
+  width: 100%;
+  position: relative;
 }
 
 .social h1 {
@@ -263,11 +268,11 @@ body {
 }
 
 .nome-destaque {
-    font-size: 16px;
-    margin: 0px 0;
-    white-space: nowrap;
-    overflow: hidden;   
-    color: #fff;
+  font-size: 16px;
+  margin: 0px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #fff;
 }
 
 .passo {
@@ -303,14 +308,14 @@ body {
 }
 
 .footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 24px;
-    flex-wrap: wrap;
-    gap: 10px;
-    color: #94a3b8;
-    margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #94a3b8;
+  margin: 0;
 }
 
 .footer .container {
@@ -321,10 +326,60 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: linear-gradient(#12141750, #16191dd0), url('../assets/imgs/main/background_home.webp');
+  background-image: linear-gradient(#12141750, #16191dd0), url('../assets/imgs//pkmnOficial/pocket/pikachuPocket.webp');
   background-size: cover;
   background-position: center;
 }
+
+.formulario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: linear-gradient(#12141750, #16191dd0);
+}
+
+.imagem-login {
+  width: 100%;
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  border-radius: 20px;
+  background-image: linear-gradient(#12141720, #16191dd0), url('../assets/imgs/pkmnOficial/pocket/pikachuPocket.webp');
+  display: flex;
+  align-items: flex-end;
+  padding: 00px 45px;
+}
+
+.imagem-login h1 {
+  color: #ffffff;
+  width: fit-content;
+  font-weight: 900;
+  font-size: 55px;
+  margin: 20px 0 10px 0;
+  font-weight: 700;
+}
+
+.wrapper-imagem {
+  width: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 25px; 
+  background-image: linear-gradient(#12141750, #16191d);
+}
+
+.titulo-formulario {
+  font-size: 35px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.campos {
+  width: 50%;
+}
+
 
 .login .container {
   justify-content: center;
@@ -346,10 +401,10 @@ body {
 }
 
 .line {
-    width: 80px;
-    height: 4px;
-    background-color: #F9CF30;
-    margin-bottom: 60px;
+  width: 80px;
+  height: 4px;
+  background-color: #F9CF30;
+  margin-bottom: 60px;
 }
 
 .card h2 {
@@ -357,29 +412,42 @@ body {
   font-size: 30px;
 }
 
-.formulario {
-  display: flex;
-  height: 90%;
-  width: 80%;
-  justify-content: space-around;
-  flex-direction: column;
-}
-
-.formulario span {
-  font-size: 15px;
+.campos span {
+  font-size: 10px;
   font-weight: 800;
+  letter-spacing: 1px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
-.formulario input {
-    border: 1px solid #202226;
-  background-color: #1a1c1f;
-
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
+.campos input {
+  width: 100%;
+  padding: 14px;
+  background: #1a1c1f;
+  border: 1px solid #1a1c1f;
+  border-radius: 8px;
+  color: #fff;
+  margin-bottom: 20px;
+  outline: none;
 }
 
-.formulario select {
+.campos-button {
+  width: 100%;
+  padding: 14px;
+  background: #F9CF30;
+  border: 1px solid #F9CF30;
+  border-radius: 25px;
+  color: #121417;
+  outline: none;
+
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.campos select {
   border: 1px solid #202226;
   background-color: #1a1c1f;
   color: gray;
@@ -467,7 +535,7 @@ body {
 
 /* FORMULARIO */
 
-.alerta_erro{
+.alerta_erro {
   display: flex;
   justify-content: flex-end;
 }
@@ -484,7 +552,7 @@ body {
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
+.card_erro #mensagem_erro {
   font-weight: 500;
   font-size: 20px;
 }
@@ -497,14 +565,6 @@ body {
 .formulario {
   display: flex;
   flex-direction: column;
-}
-
-input {
-  margin-bottom: 10px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
-  color: #fff;
 }
 
 .loading-div {
@@ -526,7 +586,7 @@ input {
 
 .simulador .container {
   flex-direction: column;
-  overflow: scroll; 
+  overflow: scroll;
   height: var(--tamanho-simulador);
 }
 
@@ -570,9 +630,23 @@ input {
 }
 
 @keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
 }
