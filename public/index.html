@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AquaTech | Página Inicial</title>
+  <title>pkmnHub lite | Página Inicial</title>
 
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="./css/estilo.css">
-  <link rel="icon" href="./assets/icon/favicon2.ico">
+  <link rel="icon" href="./assets/imgs/main/logo2.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -53,23 +53,29 @@
   <div class="social">
     <h1>Como <span class="ballet">Funciona?</span></h1>
     <p>Em três passos simples você já está no controle da sua coleção.</p>
+    <div class="line"></div>
     <div class="container">
       <div class="box">
-        <h3>PASSO 01:</h3>
+        <h3 class="passo">PASSO 01:</h3>
         <h4>Crie sua conta</h4>
-        <span>Cadastre-se gratuitamente e escolha seu treinador. Em menos de um minuto você já tem acesso à plataforma
+        <span class="texto">Cadastre-se gratuitamente e escolha seu treinador. Em menos de um minuto você já tem acesso
+          à plataforma
           completa.</span>
       </div>
+
       <div class="box">
-        <h3>PASSO 02:</h3>
+        <h3 class="passo">PASSO 02:</h3>
         <h4>Registre suas cartas</h4>
-        <span>Adicione cada carta da sua coleção com raridade, coleção e estado de conservação. Seu inventário sempre
+        <span class="texto">Adicione cada carta da sua coleção com raridade, coleção e estado de conservação. Seu
+          inventário sempre
           atualizado.</span>
       </div>
+
       <div class="box">
-        <h3>PASSO 02:</h3>
+        <h3 class="passo">PASSO 02:</h3>
         <h4>Acompanhe o mercado</h4>
-        <span>Veja o valor atual da sua coleção, quais cartas estão valorizando e tome decisões estratégicas de compra e
+        <span class="texto">Veja o valor atual da sua coleção, quais cartas estão valorizando e tome decisões
+          estratégicas de compra e
           venda.</span>
       </div>
     </div>
@@ -77,20 +83,25 @@
 
   <div class="social social--alternativo">
     <h1>Cartas em <span class="ballet">Alta</span></h1>
-    <p>Acompanhe as cartas mais cobiçadas do mercado atual!</p>
+    <p>Confira as 5 cartas mais cobiçadas do mercado atual!</p>
+    <div class="line"></div>
     <div class="container">
       <div class="wrapper">
-        <img src="https://images.scrydex.com/pokemon/me2-125/large" style="width: 270px;">
+        <img id="destaque_imagem" src="https://images.scrydex.com/pokemon/me2-125/large" style="width: 270px;">
+        <div class="row" id="destaque_posicao" style="width: fit-content;">
+        </div>
         <div class="row">
-          <button class="botao botao--destaque">ANTERIOR</button>
-          <button class="botao botao--destaque">PRÓXIMO</button>
+          <button class="botao botao--destaque" onclick="destaqueAnterior()">ANTERIOR</button>
+          <button class="botao botao--destaque" onclick="proximoDestaque()">PRÓXIMO</button>
         </div>
       </div>
+
       <div class="box box--destaque">
-        <!-- <h3>PASSO 02:</h3> -->
-        <h3>Mega Charizard X ex</h3>
-        <span class="texto">Fogo Fantasmagórico • #125/094</span>
-        <span class="preco">R$ 1.490,00</span>
+        <div class="infos">
+          <h3 id="destaque_nome" class="nome-destaque"></h3>
+          <span id="destaque_info" class="texto"></span>
+          <span id="destaque_preco" class="preco"></span>
+        </div>
 
         <div class="chart-wrapper">
           <canvas id="myChart"></canvas>
@@ -102,7 +113,7 @@
   <div class="footer">
     <div class="container">
       <div class="logo">
-        <img src="./assets/imgs/main/logo2.png" alt="">
+        <img src="./assets/imgs/main/logo2.png">
         <h1 class="titulo">pkmnHub lite</h1>
       </div>
       <span>© 2026 pkmnHub. Todos os direitos reservados.</span>
@@ -115,30 +126,95 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-  let meuGraficoLinhas = null;
-  let labelsLinha = ['jan', 'fev', 'mar', 'abr', 'maio', 'jun'];
-  let dadoslinha = [804.98, 947.75, 1061.55, 1276.15, 1270.44, 1542.56];
-
   let cartas = {
-    '1': {
+    '0': {
       'nome': 'Mega Charizard X ex',
       'imagem': 'https://images.scrydex.com/pokemon/me2-125/large',
       'historico': [804.98, 947.75, 1061.55, 1276.15, 1270.44, 1542.56],
-      'infos': 'Fogo Fantasmagórico • #125/094'
+      'infos': 'Fogo Fantasmagórico • #125/094',
+      'posicao': `
+          <div class="div-circulo div-circulo--ativo" onclick="destaqueEspecifico(0)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(1)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(2)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(3)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(4)"></div>`
     },
-
-
+    '1': {
+      'nome': 'Eevee',
+      'imagem': 'https://images.scrydex.com/pokemon/sv6-188/large',
+      'historico': [195.46, 209.81, 227.2, 263.97, 336.74, 350.50],
+      'infos': 'Máscaras do Crepúsculo • #188/167',
+      'posicao': `
+          <div class="div-circulo" onclick="destaqueEspecifico(0)"></div>
+          <div class="div-circulo div-circulo--ativo" onclick="destaqueEspecifico(1)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(2)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(3)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(4)"></div>`
+    },
+    '2': {
+      'nome': 'Psyduck',
+      'imagem': 'https://images.scrydex.com/pokemon/me2pt5-226/large',
+      'historico': [258.77, 148.75, 131.70, 158.64, 224.84, 229.00],
+      'infos': 'Heróis Excelsos • #226/217',
+      'posicao': `
+          <div class="div-circulo" onclick="destaqueEspecifico(0)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(1)"></div>
+          <div class="div-circulo div-circulo--ativo" onclick="destaqueEspecifico(2)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(3)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(4)"></div>`
+    },
+    '3': {
+      'nome': 'Pikachu ex',
+      'imagem': 'https://images.scrydex.com/pokemon/me2pt5-276/large',
+      'historico': [1564.72, 1178.92, 1180.08, 2011.82, 3032.40, 2798.90],
+      'infos': 'Heróis Excelsos • #276/217',
+      'posicao': `
+          <div class="div-circulo" onclick="destaqueEspecifico(0)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(1)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(2)"></div>
+          <div class="div-circulo div-circulo--ativo" onclick="destaqueEspecifico(3)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(4)"></div>`
+    },
+    '4': {
+      'nome': 'Mega Gengar ex',
+      'imagem': 'https://images.scrydex.com/pokemon/me2pt5-284/large',
+      'historico': [1783.20, 1816.39, 1149.16, 1770.07, 2462.38, 2499.90],
+      'infos': 'Heróis Excelsos • #284/217',
+      'posicao': `
+          <div class="div-circulo" onclick="destaqueEspecifico(0)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(1)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(2)"></div>
+          <div class="div-circulo" onclick="destaqueEspecifico(3)"></div>
+          <div class="div-circulo div-circulo--ativo" onclick="destaqueEspecifico(4)"></div>`
+    }
   }
 
+  let graficoDestaque = null;
+  let contadorDestaque = 0;
+  let labelsLinha = ['jan', 'fev', 'mar', 'abr', 'maio', 'jun'];
+
   function renderizarGrafico() {
+    let cartaAtual = cartas[`${contadorDestaque}`];
+    document.getElementById('destaque_imagem').src = cartaAtual['imagem'];
+    document.getElementById('destaque_nome').innerHTML = cartaAtual['nome'];
+    document.getElementById('destaque_info').innerHTML = cartaAtual['infos'];
+    document.getElementById('destaque_posicao').innerHTML = cartaAtual['posicao'];
+
+    let ultimoPreco = cartaAtual['historico'][cartaAtual['historico'].length - 1];
+    document.getElementById('destaque_preco').innerHTML = 'R$ ' + ultimoPreco;
+
+    if (graficoDestaque) {
+      graficoDestaque.destroy();
+    }
+
     const ctx = document.getElementById('myChart').getContext('2d');
-    meuGraficoLinhas = new Chart(ctx, {
+    graficoDestaque = new Chart(ctx, {
       type: 'line',
       data: {
         labels: labelsLinha,
         datasets: [{
-          label: 'Valor da Coleção',
-          data: dadoslinha,
+          label: 'Valor de mercado:',
+          data: cartaAtual['historico'],
           borderColor: '#F9CF30',
           tension: 0.5,
           pointRadius: 0,
@@ -172,6 +248,26 @@
     });
   }
 
-  renderizarGrafico();
+  function destaqueAnterior() {
+    if (contadorDestaque == 0) {
+      contadorDestaque = 4;
+    } else {
+      contadorDestaque--;
+    }
+    renderizarGrafico();
+  }
 
+  function proximoDestaque() {
+    if (contadorDestaque == 4) {
+      contadorDestaque = 0;
+    } else {
+      contadorDestaque++;
+    }
+    renderizarGrafico();
+  }
+
+  function destaqueEspecifico(numero) {
+    contadorDestaque = numero;
+    renderizarGrafico();
+  }
 </script>
