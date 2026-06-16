@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body>
+<body onload="renderizarGrafico()">
   <div class="header">
     <div class="container">
       <div class="logo">
@@ -75,6 +75,30 @@
     </div>
   </div>
 
+  <div class="social social--alternativo">
+    <h1>Cartas em <span class="ballet">Alta</span></h1>
+    <p>Acompanhe as cartas mais cobiçadas do mercado atual!</p>
+    <div class="container">
+      <div class="wrapper">
+        <img src="https://images.scrydex.com/pokemon/me2-125/large" style="width: 270px;">
+        <div class="row">
+          <button class="botao botao--destaque">ANTERIOR</button>
+          <button class="botao botao--destaque">PRÓXIMO</button>
+        </div>
+      </div>
+      <div class="box box--destaque">
+        <!-- <h3>PASSO 02:</h3> -->
+        <h3>Mega Charizard X ex</h3>
+        <span class="texto">Fogo Fantasmagórico • #125/094</span>
+        <span class="preco">R$ 1.490,00</span>
+
+        <div class="chart-wrapper">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="footer">
     <div class="container">
       <div class="logo">
@@ -87,3 +111,67 @@
 </body>
 
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  let meuGraficoLinhas = null;
+  let labelsLinha = ['jan', 'fev', 'mar', 'abr', 'maio', 'jun'];
+  let dadoslinha = [804.98, 947.75, 1061.55, 1276.15, 1270.44, 1542.56];
+
+  let cartas = {
+    '1': {
+      'nome': 'Mega Charizard X ex',
+      'imagem': 'https://images.scrydex.com/pokemon/me2-125/large',
+      'historico': [804.98, 947.75, 1061.55, 1276.15, 1270.44, 1542.56],
+      'infos': 'Fogo Fantasmagórico • #125/094'
+    },
+
+
+  }
+
+  function renderizarGrafico() {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    meuGraficoLinhas = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labelsLinha,
+        datasets: [{
+          label: 'Valor da Coleção',
+          data: dadoslinha,
+          borderColor: '#F9CF30',
+          tension: 0.5,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'end',
+            labels: { color: '#808fa5', usePointStyle: false, boxWidth: 4, boxHeight: 4 }
+          }
+        },
+        scales: {
+          x: { ticks: { color: '#808fa5' }, grid: { color: 'rgba(255,255,255,0.08)' } },
+          y: {
+            ticks: {
+              color: '#808fa5',
+              callback: function (value) { return 'R$ ' + value.toLocaleString('pt-BR'); }
+            },
+            grid: { color: 'rgba(255,255,255,0.08)' }
+          }
+        }
+      }
+    });
+  }
+
+  renderizarGrafico();
+
+</script>
