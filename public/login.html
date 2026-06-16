@@ -2,90 +2,80 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>AquaTech | Login</title>
+    <title>AquaTech | Cadastro</title>
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="./css/estilo.css" />
+    <link rel="icon" href="./assets/icon/favicon2.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body>
-
-    <!--Header-->
-
-  <div class="header">
-    <div class="container">
-      <div class="logo">
-        <img src="./assets/imgs/main/logo2.png" alt="">
-        <h1 class="titulo">pkmnHub lite</h1>
-      </div>
-      <ul class="navbar">
-        <li class="agora">
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Como Funciona?</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li>
-          <a href="cadastro.html">Cadastro</a>
-        </li>
-      </ul>
+<body onload="listar()">
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./assets/imgs/main/logo2.png" alt="">
+                <h1 class="titulo">pkmnHub lite</h1>
+            </div>
+            <ul class="navbar">
+                <li class="agora">
+                    <a href="index.html">Inicial</a>
+                </li>
+                <li>
+                    <a href="simulador.html">Como Funciona?</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li>
+                    <a href="cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
+    <!--header fim-->
 
-
-    <div class="login">
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
+    <div class="row" style="width: 100%; gap: 0;">
+        <div class="wrapper-imagem">
+            <div class="imagem-login imagem-login--login">
+                <h1>Domine o jogo, <br> <span class="ballet">Coleciona</span> lendas!</h1>
             </div>
         </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Continue sua Jornada</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
-                </div>
 
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
+        <div class="login formulario" style="width: 50%;">
+            <div class="campos">
+                <h3 class="titulo-formulario">Continue sua Jornada</h3>
+                <div class="campo">
+                    <span>E-mail:</span>
+                    <input id="email_input" type="text" placeholder="Login">
                 </div>
-
-                <div id="div_erros_login"></div>
+                <div class="campo">
+                    <span>Senha:</span>
+                    <input id="senha_input" type="password" placeholder="******">
+                </div>
+                <button class="campos-button" style="margin-top: 6px;" onclick="entrar()">Entrar</button>
             </div>
         </div>
     </div>
 
     <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <div class="logo">
-        <img src="./assets/imgs/main/logo2.png" alt="">
-        <h1 class="titulo">pkmnHub lite</h1>
-      </div>
-      <span>© 2026 pkmnHub. Todos os direitos reservados.</span>
+    <div class="footer">
+        <div class="container">
+            <div class="logo">
+                <img src="./assets/imgs/main/logo2.png" alt="">
+                <h1 class="titulo">pkmnHub lite</h1>
+            </div>
+            <span>© 2026 pkmnHub. Todos os direitos reservados.</span>
+        </div>
     </div>
-  </div>
     <!--footer fim-->
-
 </body>
 
 </html>
@@ -94,7 +84,6 @@
 
 
     function entrar() {
-        aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;

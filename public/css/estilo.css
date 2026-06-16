@@ -352,6 +352,10 @@ body {
   padding: 00px 45px;
 }
 
+.imagem-login--login {
+  background-image: linear-gradient(#12141720, #16191dd0), url('../assets/imgs/pkmnOficial/pocket/venuPocket.webp');
+}
+
 .imagem-login h1 {
   color: #ffffff;
   width: fit-content;
