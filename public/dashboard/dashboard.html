@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaTech | Dashboards</title>
 
-    
+
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
@@ -31,38 +31,87 @@
 <body>
 
     <div class="janela">
+
         <div class="header-left">
             <h1>AquaTech</h1>
-
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
-
             <div class="btn-nav-white">
                 <a href="./cards.html">
                     <h3>Aquários e Terrários</h3>
                 </a>
             </div>
-
             <div class="btn-nav">
-
                 <h3>Gráficos</h3>
-
             </div>
-
             <div class="btn-nav-white">
                 <a href="./mural.html">
                     <h3>Mural de Avisos</h3>
                 </a>
             </div>
-
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
-
         </div>
 
         <div class="dash">
+            <div class="social">
+                <div class="container">
+                    <div class="box box--destaque">
+                        <div class="infos">
+                            <h3 class="nome-destaque">Total de cartas</h3>
+                            <span class="texto"></span>
+                            <span id="destaque_preco" class="preco">274</span>
+                        </div>
+                    </div>
+
+                    <div class="box box--destaque">
+                        <div class="infos">
+                            <h3 class="nome-destaque">Carta mais cara</h3>
+                            <span class="texto">Gastly - Temporal Forces</span>
+                            <span id="destaque_preco" class="preco">R$ 489,00</span>
+                        </div>
+                    </div>
+
+                    <div class="box box--destaque">
+                        <div class="infos">
+                            <h3 class="nome-destaque">ROI</h3>
+                            <span class="texto"></span>
+                            <span id="destaque_preco" class="preco">-15%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container" style="margin-top: 15px;">
+
+                    <div class="box box--destaque">
+                        <div class="infos">
+                            <h3 id="destaque_nome" class="nome-destaque">Valor estimado da coleção</h3>
+                            <span id="destaque_info" class="texto"></span>
+                            <span id="destaque_preco" class="preco"></span>
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="box box--destaque">
+                        <div class="infos">
+                            <h3 id="destaque_nome" class="nome-destaque">Gasto x Venda</h3>
+                            <span id="destaque_info" class="texto"></span>
+                            <span id="destaque_preco" class="preco"></span>
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div id="alerta">
             </div>
 
@@ -72,6 +121,8 @@
             <div id="graficos">
             </div>
         </div>
+
+
     </div>
 
 
@@ -204,13 +255,13 @@
         let dados = {
             labels: labels,
             datasets: [
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
+                {
+                    label: 'Temperatura',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(199, 52, 52)',
+                    tension: 0.1
+                }]
         };
 
         console.log('----------------------------------------------')
