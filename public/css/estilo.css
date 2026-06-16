@@ -47,6 +47,12 @@ body {
   margin: auto;
 }
 
+.titulo-dashboard {
+  font-size: 150%;
+  font-weight: 900;
+  color: #fff;
+}
+
 .header {
   height: var(--tamanho-header);
   border-bottom: 1px solid #202226;
@@ -95,7 +101,7 @@ body {
 .titulo {
   color: #F9CF30;
   width: fit-content;
-  font-weight: 500;
+  font-weight: 900;
   font-size: 18px;
 }
 
@@ -156,6 +162,13 @@ body {
 
 .social--alternativo {
   background-color: #121417;
+}
+
+.social--dash {
+  background-color: #121417;
+  height: 100vh;
+  padding: 0 30px;
+  justify-content: center;
 }
 
 .row {
@@ -245,7 +258,7 @@ body {
 .box--destaque {
   width: 100%;
   background-color: #1a1c1f;
-  border-top: 3px solid #F9CF30;
+  /* border-top: 3px solid #F9CF30; */
   border-left: none;
 }
 
@@ -401,6 +414,16 @@ body {
   font-weight: 200;
   font-size: 10px;
   width: 48%;
+  margin-top: 0;
+  background-color: transparent;
+  border: #F9CF30 1px solid;
+  color: #F9CF30;
+}
+
+.botao--sidebar {
+  font-weight: 200;
+  font-size: 15px;
+  width: 100%;
   margin-top: 0;
   background-color: transparent;
   border: #F9CF30 1px solid;

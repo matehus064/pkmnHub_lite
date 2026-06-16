@@ -100,15 +100,6 @@ body {
   margin-bottom: 80px;
 }
 
-.div-buttons {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.div-buttons>* {
-  margin-left: 30px;
-}
-
 /* pagina graficos */
 
 .dash-header {
@@ -116,10 +107,10 @@ body {
 }
 
 .dash {
-  width: 80%;
+  width: calc(100vw - 250px); 
+  left: 250px;                
   position: relative;
   top: 0;
-  left: 20%;
   background-color: #161618;
   height: 100vh;
   overflow: auto;
@@ -328,7 +319,8 @@ canvas {
 
 .janela {
   display: flex;
-  /* width: 100vw; */
+  width: 100vw;
+  height: 100vh;
 }
 
 .header-left a {
@@ -342,13 +334,16 @@ canvas {
   left: 0;
   z-index: 999;
   height: 100vh;
-  width: 20%;
+  width: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  border-right: 3px solid #32b9cd;
-  background-color: #212124;
+  justify-content: flex-start;
+  gap: 15px;
+  align-items: flex-start;
+  border-right: 1px solid #1a1c1f;
+  background-color: #121417;
+  padding: 30px 20px;
+  box-sizing: border-box;
 }
 
 .dash-right {
@@ -358,29 +353,8 @@ canvas {
   background-color: #161618;
   position: relative;
   top: 0;
-  left: 25%;
   height: 100vh;
   overflow: auto;
-}
-
-.header-left h1 {
-  color: #32b9cd;
-}
-
-.hello {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.hello h3 {
-  color: #e3b062;
-  font-weight: 300;
-  font-size: 1.2rem;
-}
-
-.hello h3 span {
-  font-weight: 800;
 }
 
 .btn-nav {
