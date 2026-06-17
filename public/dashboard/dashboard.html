@@ -28,21 +28,30 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body>
+<body onload="validarSessao()">
 
     <div class="janela">
 
         <div class="header-left">
-            <div class="logo">
-                <img src="../assets/imgs/main/logo2.png" alt="">
-                <h1 class="titulo">pkmnHub lite</h1>
+            <div class="wrapper wrapper--cima">
+                <div class="logo">
+                    <img src="../assets/imgs/main/logo2.png" alt="">
+                    <h1 class="titulo">pkmnHub lite</h1>
+                </div>
+                <div class="line" style="margin: 10px 0px 10px 0px; width: 100%; height: 1px;"></div>
+                <button class="botao botao--sidebar" onclick="window.location.href='./cards.html'">Gráficos</button>
+                <button class="botao botao--sidebar" onclick="window.location.href='./mural.html'">Mural de
+                    Avisos</button>
             </div>
-            <a href="./cards.html">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </a>
-                <button class="botao botao--sidebar" onclick="window.location.href='./cards.html'" >Gráficos</button>
-                <button class="botao botao--sidebar" onclick="window.location.href='./mural.html'" >Mural de Avisos</button>
+            <div class="wrapper wrapper--baixo">
                 <button class="botao botao--sidebar" onclick="limparSessao()">Sair</button>
+                <div class="line" style="margin: 10px 0px 10px 0px; width: 100%; height: 1px;"></div>
+
+                    <div class="row" style="justify-content: flex-start; align-items: center; margin-top: 10px;">
+                        <img id="b_fotoPerfil" style='width: 50px; height: 50px; margin: 0;'>
+                        <h3 style="font-size: 25px; margin: 0; color: #fff;">Olá, <span id="b_usuario">usuário</span>!</h3>
+                    </div>
+            </div>
         </div>
 
         <div class="dash">

@@ -92,9 +92,6 @@
             finalizarAguardar();
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -117,10 +114,9 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.EMAIL_USUARIO = json.emailServer;
+                    sessionStorage.NOME_USUARIO = json.usernameServer;
+                    sessionStorage.FOTO_PERFIL = json.numFotoPerfilServer;
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
@@ -144,9 +140,4 @@
 
         return false;
     }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
 </script>
