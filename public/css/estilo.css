@@ -183,6 +183,12 @@ body {
   width: 100%;
 }
 
+.row img {
+  width: 13%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -326,7 +332,7 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: linear-gradient(#12141750, #16191dd0), url('../assets/imgs//pkmnOficial/pocket/pikachuPocket.webp');
+  background-image: linear-gradient(#1a1c1f, #1a1c1f), url('../assets/imgs//pkmnOficial/pocket/pikachuPocket.webp');
   background-size: cover;
   background-position: center;
 }
@@ -336,7 +342,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: linear-gradient(#12141750, #16191dd0);
+  background-image: linear-gradient(#1a1c1f, #1a1c1f);
 }
 
 .imagem-login {
@@ -346,14 +352,14 @@ body {
   background-position: center;
   display: block;
   border-radius: 20px;
-  background-image: linear-gradient(#12141720, #16191dd0), url('../assets/imgs/pkmnOficial/pocket/pikachuPocket.webp');
+  background-image: linear-gradient(#1214173f, #1a1c1f), url('../assets/imgs/pkmnOficial/pocket/pikachuPocket.webp');
   display: flex;
   align-items: flex-end;
   padding: 00px 45px;
 }
 
 .imagem-login--login {
-  background-image: linear-gradient(#12141720, #16191dd0), url('../assets/imgs/pkmnOficial/pocket/venuPocket.webp');
+  background-image: linear-gradient(#1214173f, #1a1c1f), url('../assets/imgs/pkmnOficial/pocket/venuPocket.webp');
 }
 
 .imagem-login h1 {
@@ -371,7 +377,7 @@ body {
   align-items: center; 
   justify-content: center; 
   padding: 25px; 
-  background-image: linear-gradient(#12141750, #16191d);
+  background-image: linear-gradient(#1a1c1f, #1a1c1f);
 }
 
 .titulo-formulario {
@@ -381,7 +387,7 @@ body {
 }
 
 .campos {
-  width: 50%;
+  width: 75%;
 }
 
 
@@ -428,8 +434,8 @@ body {
 .campos input {
   width: 100%;
   padding: 14px;
-  background: #1a1c1f;
-  border: 1px solid #1a1c1f;
+  background: #121417;
+  border: 1px solid #121417;
   border-radius: 8px;
   color: #fff;
   margin-bottom: 20px;
@@ -466,6 +472,7 @@ body {
   flex-direction: column;
   justify-content: start;
   padding: 5px 0;
+  width: 100%;
 }
 
 .botao {

@@ -40,7 +40,7 @@
     </div>
     <!--header fim-->
 
-    <div class="row" style="width: 100%; gap: 0;">
+    <div class="row" style="width: 100%; gap: 0; padding: 0 5%; background-color: #1a1c1f;">
         <div class="wrapper-imagem">
             <div class="imagem-login imagem-login--login">
                 <h1>Domine o jogo, <br> <span class="ballet">Coleciona</span> lendas!</h1>
@@ -123,7 +123,7 @@
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
