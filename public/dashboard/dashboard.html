@@ -31,26 +31,29 @@
 <body onload="validarSessao()">
 
     <div class="janela">
-
         <div class="header-left">
             <div class="wrapper wrapper--cima">
                 <div class="logo">
                     <img src="../assets/imgs/main/logo2.png" alt="">
                     <h1 class="titulo">pkmnHub lite</h1>
                 </div>
-                <div class="line" style="margin: 10px 0px 10px 0px; width: 100%; height: 1px;"></div>
-                <button class="botao botao--sidebar" onclick="window.location.href='./cards.html'">Gráficos</button>
-                <button class="botao botao--sidebar" onclick="window.location.href='./mural.html'">Mural de
-                    Avisos</button>
+                <div class="line line--sidebar"></div>
+                <a class="header-link" href="./dashboard.html">Dashboard</a>
+                <a class="header-link" href="./mural.html">Compra</a>
+                <a class="header-link" href="./mural.html">Venda</a>
             </div>
-            <div class="wrapper wrapper--baixo">
-                <button class="botao botao--sidebar" onclick="limparSessao()">Sair</button>
-                <div class="line" style="margin: 10px 0px 10px 0px; width: 100%; height: 1px;"></div>
 
-                    <div class="row" style="justify-content: flex-start; align-items: center; margin-top: 10px;">
-                        <img id="b_fotoPerfil" style='width: 50px; height: 50px; margin: 0;'>
-                        <h3 style="font-size: 25px; margin: 0; color: #fff;">Olá, <span id="b_usuario">usuário</span>!</h3>
+            <div class="wrapper wrapper--baixo">
+                <a class="header-link" onclick="limparSessao()">Sair</a>
+                <div class="line line--sidebar"></div>
+                <div class="row row--perfil">
+                    <img id="b_fotoPerfil" class="foto-perfil">
+                    <div class="wrapper wrapper--info">
+                        <h3 class="titulo-usuario"><span class="texto-leve">Hey,</span><span id="b_usuario">usuário</span>!</h3>
+                        <span class="subtitulo-perfil">QUEM É ESSE PKMN?</span>
                     </div>
+                    <h3 class="seta-perfil">></h3>
+                </div>
             </div>
         </div>
 

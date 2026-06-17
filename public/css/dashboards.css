@@ -326,11 +326,6 @@ canvas {
   height: 100vh;
 }
 
-.header-left a {
-  text-decoration: none;
-  color: white;
-}
-
 .header-left {
   position: fixed;
   top: 0;

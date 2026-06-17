@@ -435,6 +435,20 @@ a img {
   padding: 20px 0;
 }
 
+.header-link
+ {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: #94a3b8;
+    text-decoration: none;
+}
+
 .line {
   width: 80px;
   height: 4px;
@@ -685,4 +699,54 @@ a img {
   100% {
     transform: rotate(25deg)
   }
+}
+
+.line--sidebar {
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+    height: 1px;
+    background-color: #94a3b8;
+}
+
+.row--perfil {
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.foto-perfil {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+}
+
+.wrapper--info {
+    align-items: flex-start;
+}
+
+.titulo-usuario {
+    font-size: 15px;
+    margin: 0;
+    color: #fff;
+}
+
+.texto-leve {
+    font-weight: 400;
+}
+
+.subtitulo-perfil {
+    font-size: 12px;
+    margin: 0;
+    font-weight: 400;
+    color: #94a3b8;
+}
+
+.seta-perfil {
+    color: #fff;
+}
+
+#b_fotoPerfil {
+    width: 50px;
+    height: 50px;
+    margin: 0;
 }
