@@ -31,6 +31,9 @@
 <body onload="validarSessao()">
 
     <div class="janela">
+        <div id="alerta">
+        </div>
+
         <div class="header-left">
             <div class="wrapper wrapper--cima">
                 <div class="logo">
@@ -39,8 +42,8 @@
                 </div>
                 <div class="line line--sidebar"></div>
                 <a class="header-link" href="./dashboard.html">Dashboard</a>
-                <a class="header-link" href="./mural.html">Compra</a>
-                <a class="header-link" href="./mural.html">Venda</a>
+                <a class="header-link" onclick="alterarCompra()">Compra</a>
+                <a class="header-link" onclick="alterarVenda()">Venda</a>
             </div>
 
             <div class="wrapper wrapper--baixo">
@@ -49,7 +52,8 @@
                 <div class="row row--perfil">
                     <img id="b_fotoPerfil" class="foto-perfil">
                     <div class="wrapper wrapper--info">
-                        <h3 class="titulo-usuario"><span class="texto-leve">Hey,</span><span id="b_usuario">usuário</span>!</h3>
+                        <h3 class="titulo-usuario"><span class="texto-leve">Hey,</span><span
+                                id="b_usuario">usuário</span>!</h3>
                         <span class="subtitulo-perfil">QUEM É ESSE PKMN?</span>
                     </div>
                     <h3 class="seta-perfil">></h3>
@@ -58,6 +62,47 @@
         </div>
 
         <div class="dash">
+
+            <div id="modalCompra" class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <div class="campos">
+                        <h3 class="titulo-formulario">Cadastre sua Aquisição</h3>
+
+                        <div class="campo">
+                            <span>Nome:</span>
+                            <input id="nome_input" type="text" placeholder="Seu nome" />
+                        </div>
+                        <div class="campo">
+                            <span>E-mail:</span>
+                            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+                        </div>
+                        <div class="row">
+                            <div class="campo">
+                                <span>Senha:</span>
+                                <input id="senha_input" type="password" placeholder="******" />
+                            </div>
+                            <div class="campo">
+                                <span>Confirmação da Senha:</span>
+                                <input id="confirmacao_senha_input" type="password" placeholder="******" />
+                            </div>
+                        </div>
+                        <button class="campos-button" style="margin-top: 6px;" onclick="cadastrar()">Cadastrar</button>
+                        <span id="mensagem_erro"></span>
+                    </div>
+
+                    <div class="imagem-login imagem-login--compra" style="height: 100%; width: 75%;">
+                        <img src="https://images.scrydex.com/pokemon/me4-96/medium" style="width: 350px;">
+                        <span class="texto">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalVenda" class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <span id="mensagem_erro">VENDA</span>
+                </div>
+            </div>
+
             <div class="social social--dash">
                 <h3 class="titulo-dashboard">Hub de Desempenho</h3>
 
@@ -88,12 +133,11 @@
                 </div>
 
                 <div class="row" style="margin-top: 15px;">
-
                     <div class="box box--destaque" style="flex: 2;">
                         <div class="infos">
                             <h3 id="destaque_nome" class="nome-destaque">Valor estimado da coleção</h3>
-                            <span id="destaque_info" class="texto"></span>
-                            <span id="destaque_preco" class="preco"></span>
+                            <span id="destaque_info" class="texto">Valor atual:</span>
+                            <span id="destaque_preco" class="preco">R$2024</span>
                         </div>
 
                         <div class="chart-wrapper">
@@ -122,6 +166,22 @@
 </html>
 
 <script>
+    function alterarCompra() {
+        if (modalCompra.style.display == "flex") {
+            modalCompra.style.display = "none";
+        } else {
+            modalCompra.style.display = "flex";
+        }
+    }
+
+    function alterarVenda() {
+        if (modalVenda.style.display == "flex") {
+            modalVenda.style.display = "none";
+        } else {
+            modalVenda.style.display = "flex";
+        }
+    }
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
@@ -177,11 +237,13 @@
             labels: labels,
             datasets: [
                 {
-                    label: 'Temperatura',
+                    label: 'Valor de mercado:',
                     data: [],
-                    fill: false,
-                    borderColor: 'rgb(199, 52, 52)',
-                    tension: 0.1
+                    borderColor: '#F9CF30',
+                    tension: 0.5,
+                    pointHoverRadius: 5,
+                    borderWidth: 3,
+                    fill: false
                 }]
         };
 
@@ -254,7 +316,7 @@
                 response.json().then(function (novoRegistro) {
 
                     obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
+                    alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
@@ -299,4 +361,8 @@
     }
 
     obterDadosGrafico(1); // substitui 1 pelo id real do aquário
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
 </script>

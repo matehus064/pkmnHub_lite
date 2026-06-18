@@ -216,7 +216,7 @@ a img {
 
 .wrapper--baixo {
   justify-content: flex-end;
-    width: 100%;
+  width: 100%;
   height: 50%;
   align-items: flex-start;
 }
@@ -229,7 +229,6 @@ a img {
 }
 
 .chart-wrapper {
-  flex: 1;
   width: 100%;
   position: relative;
 }
@@ -381,10 +380,17 @@ a img {
   display: flex;
   align-items: flex-end;
   padding: 00px 45px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .imagem-login--login {
   background-image: linear-gradient(#1214173f, #1a1c1f), url('../assets/imgs/pkmnOficial/pocket/venuPocket.webp');
+}
+
+.imagem-login--compra {
+  background-image: linear-gradient(#1214173f, #1a1c1f), url('../assets/imgs/pkmnOficial/pocket/gyaradosPocket.webp');
 }
 
 .imagem-login h1 {
@@ -397,11 +403,11 @@ a img {
 }
 
 .wrapper-imagem {
-  width: 50%; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 25px; 
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
   background-image: linear-gradient(#1a1c1f, #1a1c1f);
 }
 
@@ -435,18 +441,17 @@ a img {
   padding: 20px 0;
 }
 
-.header-link
- {
-    font-size: 1.1rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 5px 0;
-    cursor: pointer;
-    transition: color 0.3s;
-    color: #94a3b8;
-    text-decoration: none;
+.header-link {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: #94a3b8;
+  text-decoration: none;
 }
 
 .line {
@@ -586,20 +591,30 @@ a img {
 /* FORMULARIO */
 
 .alerta_erro {
-  display: flex;
-  justify-content: flex-end;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100vh;
+  z-index: 999;
+  width: 100%;
+  background-color: #121417bc; 
 }
 
 .card_erro {
-  display: none;
-  background-color: #fff;
+  background-color: #1a1c1f;
   color: black;
-  width: 230px;
-  position: fixed;
-  border-radius: 4px;
-  border: #ED145B 3px solid;
+  width: 75%;
+  position: absolute;
+  border-radius: 25px;
   padding: 10px;
-  margin-right: 10%;
+  height: 75vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3%;
+  gap: 15px;
 }
 
 .card_erro #mensagem_erro {
@@ -702,51 +717,51 @@ a img {
 }
 
 .line--sidebar {
-    margin: 10px 0px 10px 0px;
-    width: 100%;
-    height: 1px;
-    background-color: #94a3b8;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  height: 1px;
+  background-color: #94a3b8;
 }
 
 .row--perfil {
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .foto-perfil {
-    width: 50px;
-    height: 50px;
-    margin: 0;
+  width: 50px;
+  height: 50px;
+  margin: 0;
 }
 
 .wrapper--info {
-    align-items: flex-start;
+  align-items: flex-start;
 }
 
 .titulo-usuario {
-    font-size: 15px;
-    margin: 0;
-    color: #fff;
+  font-size: 15px;
+  margin: 0;
+  color: #fff;
 }
 
 .texto-leve {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .subtitulo-perfil {
-    font-size: 12px;
-    margin: 0;
-    font-weight: 400;
-    color: #94a3b8;
+  font-size: 12px;
+  margin: 0;
+  font-weight: 400;
+  color: #94a3b8;
 }
 
 .seta-perfil {
-    color: #fff;
+  color: #fff;
 }
 
 #b_fotoPerfil {
-    width: 50px;
-    height: 50px;
-    margin: 0;
+  width: 50px;
+  height: 50px;
+  margin: 0;
 }
