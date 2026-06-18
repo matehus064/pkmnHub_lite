@@ -383,6 +383,7 @@ a img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 0;
 }
 
 .imagem-login--login {
@@ -391,6 +392,10 @@ a img {
 
 .imagem-login--compra {
   background-image: linear-gradient(#1214173f, #1a1c1f), url('../assets/imgs/pkmnOficial/pocket/gyaradosPocket.webp');
+}
+
+.imagem-login--venda {
+  background-image: linear-gradient(#1214173f, #1a1c1f), url('../assets/imgs/pkmnOficial/pocket/nidokingPocket.webp');
 }
 
 .imagem-login h1 {
@@ -488,6 +493,7 @@ a img {
 
 .campos-button {
   width: 100%;
+  height: 45px;
   padding: 14px;
   background: #F9CF30;
   border: 1px solid #F9CF30;
@@ -538,6 +544,13 @@ a img {
   font-size: 10px;
   width: 48%;
   margin-top: 0;
+  background-color: transparent;
+  border: #F9CF30 1px solid;
+  color: #F9CF30;
+}
+
+.botao-vazado {
+  font-weight: 200;
   background-color: transparent;
   border: #F9CF30 1px solid;
   color: #F9CF30;
@@ -615,6 +628,7 @@ a img {
   align-items: center;
   padding: 3%;
   gap: 15px;
+  overflow: hidden;
 }
 
 .card_erro #mensagem_erro {
@@ -764,4 +778,16 @@ a img {
   width: 50px;
   height: 50px;
   margin: 0;
+}
+
+.wrapper-start {
+  align-items: flex-start;
+}
+
+.seta {
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+
 }
