@@ -108,14 +108,14 @@
                             </div>
                         </div>
 
-                        <button class="campos-button" style="margin-top: 6px;"
-                            onclick="cadastrarCompra()">Cadastrar</button>
+                        <button class="campos-button" style="margin-top: 6px;" onclick="publicar()">Cadastrar</button>
                         <div id="div_validacaoCompra"></div>
                     </div>
 
                     <div class="imagem-login imagem-login--compra"
                         style="height: 100%; width: 75%; justify-content: center; gap: 15px;">
-                        <img src="https://images.scrydex.com/pokemon/me7-96/medium" style="width: 75%; opacity: 0;" id="img_cartaCompra">
+                        <img src="https://images.scrydex.com/pokemon/me7-96/medium" style="width: 75%; opacity: 0;"
+                            id="img_cartaCompra">
                         <div class="wrapper-start">
                             <h3 class="nome-destaque">Instruções:</h3>
                             <span class="texto">Preencha somente o campo de numeração e valores, caso seja necessário
@@ -171,7 +171,8 @@
 
                     <div class="imagem-login imagem-login--venda"
                         style="height: 100%; width: 75%; justify-content: center; gap: 15px;">
-                        <img src="https://images.scrydex.com/pokemon/me7-96/medium" style="width: 75%; opacity: 0;" id="img_cartaVenda">
+                        <img src="https://images.scrydex.com/pokemon/me7-96/medium" style="width: 75%; opacity: 0;"
+                            id="img_cartaVenda">
                         <div class="wrapper-start">
                             <h3 class="nome-destaque">Instruções:</h3>
                             <span class="texto">Preencha somente o campo de numeração e valores, caso seja necessário
@@ -317,9 +318,9 @@
 
         if (cartasEncontradas.length > 1) {
             mensagemTemporizada(divMensagem, "<span style='color: #EE3D2D'>Múltiplos sets encontrados, insira a expansão!</span>");
-                    console.log(cartasEncontradas);
+            console.log(cartasEncontradas);
         }
-        
+
         if (expansao) {
             for (let i = 0; i < cartasEncontradas.length; i++) {
                 let set = null;
@@ -533,4 +534,55 @@
     function sumirMensagem() {
         cardErro.style.display = "none";
     }
+
+
+
+    /*========================================
+    | FUNÇÕES PARA O MODAL DE CADASTRO/VENDA |
+    ========================================*/
+    function publicar() {
+        let usuario = sessionStorage.ID_USER;
+        let nome_carta = document.getElementById(`ipt_nomeCompra`).value;
+        let numero_set = document.getElementById(`ipt_numeroCompra`).value;
+        let nome_set = document.getElementById(`ipt_setCompra`).value;
+        let url_imagem = document.getElementById(`img_cartaCompra`).src;
+
+        let preco_compra = document.getElementById(`ipt_valorCompra`).value;
+        let preco_ligaPkmn = document.getElementById(`ipt_precoLigaCompra`).value;
+        let quantidade = document.getElementById(`ipt_qtdCompra`).value;
+
+        fetch(`/avisos/publicar/${usuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                usuario: usuario,
+                nome_carta: nome_carta,
+                nome_set: nome_set,
+                numero_set: numero_set,
+                quantidade: quantidade,
+                preco_compra: preco_compra,
+                preco_ligaPkmn: preco_ligaPkmn,
+                url_imagem: url_imagem
+            }),
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + usuario + "!");
+                limparFormulario('Compra');
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+
 </script>

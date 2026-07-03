@@ -89,6 +89,10 @@ function deletar(idAviso) {
     return database.executar(instrucaoSql);
 }
 
+/*======================================
+|              ADAPTAÇÃO               |     
+======================================*/
+
 function existeCarta(nomeCarta, numeroSet) {
     var instrucaoSql = `
         SELECT id, nome_carta, numero_set FROM cartas WHERE nome_carta = '${nomeCarta}' AND numero_set = '${numeroSet}';
@@ -144,7 +148,7 @@ function buscarValorTotalColecao(usuario) {
 
 function salvarSnapshot(usuario, valorTotal) {
     var instrucaoSql = `
-        INSERT INTO snapshots_colecao (fk_usuario, valor_total) VALUES ('${usuario}', '${valorTotal}');
+        INSERT INTO snapshot_colecao (fk_usuario, valor_total) VALUES ('${usuario}', '${valorTotal}');
     `;
     return database.executar(instrucaoSql);
 }
