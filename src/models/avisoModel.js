@@ -93,6 +93,10 @@ function deletar(idAviso) {
 |              ADAPTAÇÃO               |     
 ======================================*/
 
+/*======================================
+|                COMPRA                |     
+======================================*/
+
 function existeCarta(nomeCarta, numeroSet) {
     var instrucaoSql = `
         SELECT id, nome_carta, numero_set FROM cartas WHERE nome_carta = '${nomeCarta}' AND numero_set = '${numeroSet}';
@@ -153,6 +157,31 @@ function salvarSnapshot(usuario, valorTotal) {
     return database.executar(instrucaoSql);
 }
 
+/*======================================
+|                 VENDA                |     
+======================================*/
+
+function buscarCartaNaColecao(usuario, nomePokemon, numeroSet) {
+    var instrucaoSql = `
+        SELECT fk_usuario, fk_carta, quantidade, preco_compra, preco_ligaPkmn, data_adicao FROM colecao c INNER JOIN base_cards bc ON c.fk_carta = bc.id WHERE fk_usuario = ${usuario} AND bc.nome_pokemon = ${nomePokemon} AND bc.numero_set = ${numeroSet}};
+    `;
+    return database.executar(instrucaoSql);
+}
+
+function atualizarQuantidade(usuario, carta, quantidade) {
+    var instrucaoSql = `
+        UPDATE colecao SET quantidade = quantidade - ${quantidade} WHERE fk_usuario = ${usuario} AND fk_carta = ${carta};
+    `;
+    return database.executar(instrucaoSql);
+}
+
+function removerDaColecao(usuario, carta) {
+    var instrucaoSql = `
+        DELETE FROM colecao WHERE fk_usuario = ${usuario} AND fk_carta = ${carta};
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
@@ -167,5 +196,8 @@ module.exports = {
     somarQuantidadeCompra,
     registrarTransacao,
     buscarValorTotalColecao,
-    salvarSnapshot
+    salvarSnapshot,
+    buscarCartaNaColecao,
+    atualizarQuantidade,
+    removerDaColecao
 }
