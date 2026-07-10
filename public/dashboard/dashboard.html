@@ -190,7 +190,7 @@
                         <div class="infos">
                             <h3 class="nome-destaque">Total de cartas</h3>
                             <span class="texto">Cartas cadastradas</span>
-                            <span id="destaque_preco" class="preco">274</span>
+                            <span id="total_cartas" class="preco">274</span>
                         </div>
                     </div>
 
@@ -198,7 +198,7 @@
                         <div class="infos">
                             <h3 class="nome-destaque">Carta mais cara</h3>
                             <span class="texto">Gastly - Temporal Forces</span>
-                            <span id="destaque_preco" class="preco">R$ 489,00</span>
+                            <span id="valor_cara" class="preco">R$ 489,00</span>
                         </div>
                     </div>
 
@@ -206,7 +206,7 @@
                         <div class="infos">
                             <h3 class="nome-destaque">ROI</h3>
                             <span class="texto">Cálculo: Gasto x Venda / Venda * 100</span>
-                            <span id="destaque_preco" class="preco">-15%</span>
+                            <span id="valor_roi" class="preco">-15%</span>
                         </div>
                     </div>
                 </div>
@@ -227,8 +227,8 @@
                     <div class="box box--destaque" style="flex: 1;">
                         <div class="infos">
                             <h3 id="destaque_nome" class="nome-destaque">Gasto x Venda</h3>
-                            <span id="destaque_info" class="texto"></span>
-                            <span id="destaque_preco" class="preco"></span>
+                            <span class="texto"></span>
+                            <span class="preco"></span>
                         </div>
 
                         <div class="chart-wrapper">
@@ -353,6 +353,9 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+        let idAquario = sessionStorage.getItem('ID_USER');
+
+
     let proximaAtualizacao;
 
     // O gráfico é construído com três funções:
@@ -366,7 +369,8 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    function obterDadosGrafico() {
+        let idAquario = sessionStorage.getItem('ID_USER');
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -435,9 +439,17 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.temperatura);
+            
+            let dataFormatada = registro.data_snapshot.split('T')[0];
+            let [ano, mes, dia] = dataFormatada.split('-');
+            labels.push(`${dia}/${mes}/${ano}`);
+            
+            dados.datasets[0].data.push(registro.valor_total);
         }
+
+        destaque_preco.innerHTML = `R$ ${resposta[resposta.length - 1].valor_total}`;
+
+        
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
@@ -485,31 +497,30 @@
                 response.json().then(function (novoRegistro) {
 
                     obterdados(idAquario);
-                    alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
+                    let valorNovo = novoRegistro[0].valor_total;
+                    let valorAtual = dados.datasets[0].data[dados.datasets[0].data.length - 1];
 
+                    if (valorNovo == valorAtual) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    console.log("---------------------------------------------------------------")
 
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
                     } else {
+                        let dataFormatada = novoRegistro[0].data_snapshot.split('T')[0];
+                        let [ano, mes, dia] = dataFormatada.split('-');
+                        let labelNovo = `${dia}/${mes}/${ano}`;
+                        destaque_preco.innerHTML = `R$ ${valorNovo}`;
+
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+                        dados.labels.push(labelNovo); // incluir um novo momento
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+                        dados.datasets[0].data.push(valorNovo); // incluir uma nova medida de temperatura
 
                         myChart.update();
                     }
@@ -529,7 +540,7 @@
 
     }
 
-    obterDadosGrafico(1); // substitui 1 pelo id real do aquário
+    obterDadosGrafico(); // substitui 1 pelo id real do aquário
 
     function sumirMensagem() {
         cardErro.style.display = "none";
