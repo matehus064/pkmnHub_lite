@@ -165,7 +165,7 @@
                         </div>
 
                         <button class="campos-button" style="margin-top: 6px;"
-                            onclick="cadastrarVenda()">Cadastrar</button>
+                            onclick="deletar()">Cadastrar</button>
                         <div id="div_validacaoVenda"></div>
                     </div>
 
@@ -565,6 +565,49 @@
                 preco_compra: preco_compra,
                 preco_ligaPkmn: preco_ligaPkmn,
                 url_imagem: url_imagem
+            }),
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + usuario + "!");
+                limparFormulario('Compra');
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+
+    function deletar() {
+        let usuario = sessionStorage.ID_USER;
+        let nome_carta = document.getElementById(`ipt_nomeVenda`).value;
+        let numero_set = document.getElementById(`ipt_numeroVenda`).value;
+        let nome_set = document.getElementById(`ipt_setVenda`).value;
+
+        let preco_venda = document.getElementById(`ipt_valorVenda`).value;
+        let preco_ligaPkmn = document.getElementById(`ipt_precoLigaVenda`).value;
+        let quantidade = document.getElementById(`ipt_qtdVenda`).value;
+
+        fetch(`/avisos/deletar/${usuario}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                usuario: usuario,
+                nome_carta: nome_carta,
+                nome_set: nome_set,
+                numero_set: numero_set,
+                quantidade: quantidade,
+                preco_venda: preco_venda,
+                preco_ligaPkmn: preco_ligaPkmn
             }),
         }).then(function (resposta) {
 

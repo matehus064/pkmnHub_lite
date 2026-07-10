@@ -163,7 +163,7 @@ function salvarSnapshot(usuario, valorTotal) {
 
 function buscarCartaNaColecao(usuario, nomePokemon, numeroSet) {
     var instrucaoSql = `
-        SELECT fk_usuario, fk_carta, quantidade, preco_compra, preco_ligaPkmn, data_adicao FROM colecao c INNER JOIN base_cards bc ON c.fk_carta = bc.id WHERE fk_usuario = ${usuario} AND bc.nome_pokemon = ${nomePokemon} AND bc.numero_set = ${numeroSet}};
+        SELECT fk_usuario, fk_carta, quantidade, preco_compra, preco_ligaPkmn, data_adicao FROM colecao col INNER JOIN cartas car ON col.fk_carta = car.id WHERE fk_usuario = ${usuario} AND car.nome_carta = '${nomePokemon}' AND car.numero_set = '${numeroSet}';
     `;
     return database.executar(instrucaoSql);
 }
