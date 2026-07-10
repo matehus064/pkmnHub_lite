@@ -1,44 +1,5 @@
 var avisoModel = require("../models/avisoModel");
 
-function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function listarPorUsuario(req, res) {
-    var idUsuario = req.params.idUsuario;
-
-    avisoModel.listarPorUsuario(idUsuario)
-        .then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!");
-                }
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "Houve um erro ao buscar os avisos: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
 function pesquisarDescricao(req, res) {
     var descricao = req.params.descricao;
 
@@ -246,8 +207,32 @@ function deletar(req, res) {
     }
 }
 
+function listarPorUsuario(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    Promise.all([
+        avisoModel.buscarTotalCartas(idUsuario),
+        avisoModel.buscarTotalCompra(idUsuario),
+        avisoModel.buscarTotalVenda(idUsuario),
+        avisoModel.buscarCartaMaisCara(idUsuario)
+    ]).then(function (resultados) {
+        res.json({
+            totalCartas: resultados[0],
+            totalCompra: resultados[1],
+            totalVenda: resultados[2],
+            cartaMaisCara: resultados[3]
+        })
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao realizar ao buscar as kpis! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
+
 module.exports = {
-    listar,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,

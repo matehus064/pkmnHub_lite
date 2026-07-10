@@ -27,7 +27,7 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body onload="validarSessao()">
+<body onload="validarSessao(); listar()">
 
     <div class="janela">
         <div id="alerta">
@@ -164,8 +164,7 @@
                             </div>
                         </div>
 
-                        <button class="campos-button" style="margin-top: 6px;"
-                            onclick="deletar()">Cadastrar</button>
+                        <button class="campos-button" style="margin-top: 6px;" onclick="deletar()">Cadastrar</button>
                         <div id="div_validacaoVenda"></div>
                     </div>
 
@@ -190,23 +189,26 @@
                         <div class="infos">
                             <h3 class="nome-destaque">Total de cartas</h3>
                             <span class="texto">Cartas cadastradas</span>
-                            <span id="total_cartas" class="preco">274</span>
+                            <span id="total_cartas" class="preco"></span>
                         </div>
                     </div>
 
-                    <div class="box box--destaque">
+                    <div class="box box--destaque" style="flex-direction: row;">
                         <div class="infos">
                             <h3 class="nome-destaque">Carta mais cara</h3>
-                            <span class="texto">Gastly - Temporal Forces</span>
-                            <span id="valor_cara" class="preco">R$ 489,00</span>
+                            <span id="nome_maisCara" class="texto"></span>
+                            <span id="valor_maisCara" class="preco"></span>
+                        </div>
+                        <div class="infos" style="margin-left: 15px;">
+                            <img id="img_maisCara" style="width: 65px; border-radius: 0;" src="">
                         </div>
                     </div>
 
                     <div class="box box--destaque">
                         <div class="infos">
-                            <h3 class="nome-destaque">ROI</h3>
+                            <h3 class="nome-destaque">Retorno Sobre Investimento</h3>
                             <span class="texto">Cálculo: Gasto x Venda / Venda * 100</span>
-                            <span id="valor_roi" class="preco">-15%</span>
+                            <span id="valor_roi" class="preco"></span>
                         </div>
                     </div>
                 </div>
@@ -216,7 +218,7 @@
                         <div class="infos">
                             <h3 id="destaque_nome" class="nome-destaque">Valor estimado da coleção</h3>
                             <span id="destaque_info" class="texto">Valor atual:</span>
-                            <span id="destaque_preco" class="preco">R$2024</span>
+                            <span id="destaque_preco" class="preco"></span>
                         </div>
 
                         <div class="chart-wrapper">
@@ -353,8 +355,43 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        let idAquario = sessionStorage.getItem('ID_USER');
+    let idAquario = sessionStorage.getItem('ID_USER');
 
+    let valorGasto = 0;
+    let valorRetorno = 0;
+
+    function listar() {
+        let idUsuario = sessionStorage.getItem("ID_USER");
+        fetch(`/avisos/listar/${idUsuario}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (json) {
+                total_cartas.innerHTML = json.totalCartas[0].total_cartas_fisicas;
+
+                nome_maisCara.innerHTML = json.cartaMaisCara[0].nome_carta + " - " + json.cartaMaisCara[0].nome_set;
+                img_maisCara.src = json.cartaMaisCara[0].url_imagem;
+                valor_maisCara.innerHTML = 'R$ ' + json.cartaMaisCara[0].preco_ligaPkmn;
+
+                let roi = ((json.totalVenda[0].total_venda - json.totalCompra[0].total_compra) / json.totalCompra[0].total_compra * 100).toFixed(0);
+                valor_roi.innerHTML = roi + "%";
+                valorGasto = json.totalCompra[0].total_compra;
+                valorRetorno = json.totalVenda[0].total_venda;
+
+                obterDadosGrafico();
+
+                if (roi >= 0) {
+                    valor_roi.style.color = 'green';
+                } else if (roi > -20) {
+                    valor_roi.style.color = 'yellow';
+                } else {
+                    valor_roi.style.color = 'red';
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+    }
 
     let proximaAtualizacao;
 
@@ -425,7 +462,7 @@
             datasets: [
                 {
                     label: ['Gasto', 'Venda'],
-                    data: [100, 200],
+                    data: [valorGasto, valorRetorno],
                     backgroundColor: ['#EE3D2D', '#2ecc71'],
                     borderWidth: 0,
                     hoverOffset: 5
@@ -439,17 +476,17 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            
+
             let dataFormatada = registro.data_snapshot.split('T')[0];
             let [ano, mes, dia] = dataFormatada.split('-');
             labels.push(`${dia}/${mes}/${ano}`);
-            
+
             dados.datasets[0].data.push(registro.valor_total);
         }
 
         destaque_preco.innerHTML = `R$ ${resposta[resposta.length - 1].valor_total}`;
 
-        
+
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
@@ -505,9 +542,9 @@
                     let valorAtual = dados.datasets[0].data[dados.datasets[0].data.length - 1];
 
                     if (valorNovo == valorAtual) {
-                    console.log("---------------------------------------------------------------")
-                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                    console.log("---------------------------------------------------------------")
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        console.log("---------------------------------------------------------------")
 
                     } else {
                         let dataFormatada = novoRegistro[0].data_snapshot.split('T')[0];
@@ -540,13 +577,9 @@
 
     }
 
-    obterDadosGrafico(); // substitui 1 pelo id real do aquário
-
     function sumirMensagem() {
         cardErro.style.display = "none";
     }
-
-
 
     /*========================================
     | FUNÇÕES PARA O MODAL DE CADASTRO/VENDA |
