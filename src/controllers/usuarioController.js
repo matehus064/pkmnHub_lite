@@ -23,7 +23,7 @@ function autenticar(req, res) {
                             id: resultadoAutenticar[0].id,
                             usernameServer: resultadoAutenticar[0].username,
                             emailServer: resultadoAutenticar[0].email,
-                            numFotoPerfilServer: resultadoAutenticar[0].fk_fotoPerfil
+                            numFotoPerfilServer: resultadoAutenticar[0].foto_perfil
                         });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
