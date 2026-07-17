@@ -170,12 +170,12 @@
             <div class="social social--dash" style="justify-content: flex-start">
                 <div style="align-items: flex-start; flex-direction: column; margin: 26px 0px;;">
                     <span class="titulo-dashboard" style="margin-top: 30px; margin-right: 10px;">Showcase</span>
-                    <select name="" id="filtroTipo" class="filtro-select" oninput="atualizarFeed()">
+                    <select name="" id="filtroTipo" class="filtro-select" oninput="carregando(), atualizarFeed()">
                         <option value="col.data_adicao">Por Data</option>
                         <option value="car.nome_set">Por Set</option>
                         <option value="col.preco_ligaPkmn">Por Preço</option>
                     </select>
-                    <select name="" id="filtroOrdem" class="filtro-select" oninput="atualizarFeed()">
+                    <select name="" id="filtroOrdem" class="filtro-select" oninput="carregando(), atualizarFeed()">
                         <option value="DESC">Decrescente</option>
                         <option value="ASC">Crescente</option>
                     </select>
@@ -191,8 +191,17 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
     let idUsuario = sessionStorage.getItem('ID_USER');
+
+        function carregando() {
+        cartas_colecao.innerHTML = `<div class="box-colecao" style="width: 100%">
+                                        <div class="dados-colecao" style="width: 100%">
+                                            <h3 class="nome-texto">Carregando...</h3>
+                                            <div class="line-colecaoH"></div>
+                                            <span class="info-texto">Por favor aguarde enquanto estamos buscando sua coleção.</span>
+                                        </div>
+                                    </div>`;
+    }
 
     function atualizarFeed() {
         let idUsuario = sessionStorage.getItem("ID_USER");
@@ -280,6 +289,7 @@
         });
     };
 
+carregando();
 atualizarFeed();
 
 </script>
