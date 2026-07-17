@@ -22,8 +22,6 @@
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
 
     <div class="janela">
-
-
         <div class="header-left">
             <div class="wrapper wrapper--cima">
                 <div class="logo">
@@ -53,139 +51,20 @@
         </div>
 
         <div class="dash">
-            <div class="avisos">
-                <div id="alerta">
-                </div>
-
-                <div class="social social--dash" style="justify-content: flex-start">
-                    <h3 class="titulo-dashboard">Showcase</h3>
-                    <div class="div-results">
-                        <div id="cartas_colecao" class="feed-container">
-
-                            <!-- <div class="box box--destaque" style="flex-direction: row;">
-                                <div class="infos" style="flex: 2;">
-                                    <h3 class="preco" style="margin-bottom: 5px">${carta[i].nome_carta} (${numero_set})
-                                    </h3>
-                                    <span class="texto">${carta[i].nome_set}</span>
-                                    <div class="line"
-                                        style="width: 100%; height: 2px; margin-bottom: 5px; margin-top: 5px"></div>
-                                    <div style="display: flex; flex-direction: row;">
-                                        <span class="texto" style="margin-right: 5px">Quantidade:</span>
-                                        <span class="nome-destaque" style="font-size: 14px; font-weight: 900;">${carta[i].quantidade}</span>
-                                    </div>
-                                    <div style="display: flex; gap: 15px;">
-                                        <div style="display: flex; flex-direction: column;">
-                                            <span class="texto" style="margin-bottom: 5px">Valor pago:</span>
-                                            <span class="nome-destaque" style="font-weight: 900;">R$ ${carta[i].preco_compra}</span>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column;">
-                                            <span class="texto" style="margin-bottom: 5px">Valor de mercado:</span>
-                                            <span class="nome-destaque" style="font-weight: 900;">R$ ${carta[i].preco_compra}</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="infos" style="margin-left: 15px; flex: 1;">
-                                    <img style="width: 50%; border-radius: 0;"
-                                        src="https://images.scrydex.com/pokemon/sv5-177/small">
-                                </div>
-                            </div> -->
-
-                        </div>
+            <div class="social social--dash" style="justify-content: flex-start">
+                <h3 class="titulo-dashboard">Showcase</h3>
+                    <div id="cartas_colecao" class="feed-container">
                     </div>
-                    <!-- <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
-                    </div> -->
-                </div>
             </div>
         </div>
     </div>
-
-
-
-
-
 </body>
-
 </html>
 
 <script>
-
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let idUsuario = sessionStorage.getItem('ID_USER');
-
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
-    }
-
-    function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-
-        var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
-        }
-
-        fetch(`/avisos/publicar/${idUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
-                limparFormulario();
-                finalizarAguardar();
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-
-        return false;
-
-    }
-
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-        window.location = "/dashboard/edicao-aviso.html"
-
-    }
-
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
 
     function atualizarFeed() {
         let idUsuario = sessionStorage.getItem("ID_USER");
@@ -212,83 +91,39 @@
                         let [ano, mes, dia] = dataFormatada.split('-');
 
                         cartas_colecao.innerHTML += `
-                            <div class="box box--destaque" style="flex-direction: row; width: 500px; heigth: 280px; justify-content: space-between;">
-                                <div class="infos" style="max-width: 50%; min-height: 100%; position: relative; justify-content: center;">
-                                    <span class="texto" style="">Data de adição: ${dia}/${mes}/${ano}</span>
-                                                                        <a href="https://www.ligapokemon.com.br/?view=cards%2Fsearch&tipo=1&card=${carta.nome_carta}+%28${carta.numero_set.split('/')[0]}%2F${carta.numero_set.split('/')[1]}%29">
-                                    <h3 class="preco" style="margin-bottom: 5px"; font-size: 23px;>${carta.nome_carta} (${carta.numero_set})
+                        <div class="box box--destaque"
+                            style="flex-direction: row; width: 500px; heigth: 280px; justify-content: space-between;">
+                            <div class="infos" style="max-width: 50%; min-height: 100%; position: relative; justify-content: center;">
+                                <span class="texto" style="">Data de adição: ${dia}/${mes}/${ano}</span>
+                                <a
+                                    href="https://www.ligapokemon.com.br/?view=cards%2Fsearch&tipo=1&card=${carta.nome_carta}+%28${carta.numero_set.split('/')[0]}%2F${carta.numero_set.split('/')[1]}%29">
+                                    <h3 class="preco" style="margin-bottom: 5px" ; font-size: 23px;>${carta.nome_carta}
+                                        (${carta.numero_set})
                                     </h3>
-                                       
-                                    </a>
-                                    <span class="texto">${carta.nome_set}</span>
-                                    <div class="line"
-                                        style="width: 100%; height: 2px; margin-bottom: 5px; margin-top: 5px"></div>
-                                    <div style="display: flex; flex-direction: row;">
-                                        <span class="texto" style="margin-right: 5px">Quantidade:</span>
-                                        <span class="nome-destaque" style="font-size: 14px; font-weight: 900;">${carta.quantidade}</span>
-                                    </div>
-                                    <div style="display: flex; width: 100%; gap: 15px; justify-content: space-between;">
-                                        <div style="display: flex; flex-direction: column;">
-                                            <span class="texto" style="margin-bottom: 5px">Valor pago:</span>
-                                            <span class="nome-destaque" style="font-weight: 900;">R$ ${carta.preco_compra}</span>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column;">
-                                            <span class="texto" style="margin-bottom: 5px">Valor de mercado:</span>
-                                            <span class="nome-destaque" style="font-weight: 900;">R$ ${carta.preco_ligaPkmn}</span>
-                                        </div>
-                                    </div>
+                                
+                                </a>
+                                <span class="texto">${carta.nome_set}</span>
+                                <div class="line" style="width: 100%; height: 2px; margin-bottom: 5px; margin-top: 5px"></div>
+                                <div style="display: flex; flex-direction: row;">
+                                    <span class="texto" style="margin-right: 5px">Quantidade:</span>
+                                    <span class="nome-destaque" style="font-size: 14px; font-weight: 900;">${carta.quantidade}</span>
                                 </div>
-                                <div class="infos" style="gap: 0; position: relative; justify-content: center;">
-                                    <img style="min-width: 100%; border-radius: 0;"
-                                        src="${carta.url_imagem}">
+                                <div style="display: flex; width: 100%; gap: 15px; justify-content: space-between;">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <span class="texto" style="margin-bottom: 5px">Valor pago:</span>
+                                        <span class="nome-destaque" style="font-weight: 900;">R$ ${carta.preco_compra}</span>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column;">
+                                        <span class="texto" style="margin-bottom: 5px">Valor de mercado:</span>
+                                        <span class="nome-destaque" style="font-weight: 900;">R$ ${carta.preco_ligaPkmn}</span>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="infos" style="gap: 0; position: relative; justify-content: center;">
+                                <img style="min-width: 100%; border-radius: 0;" src="${carta.url_imagem}">
+                            </div>
+                        </div>
                         `
-
-
-
-                        // // criando e manipulando elementos do HTML via JavaScript
-                        // var divPublicacao = document.createElement("div");
-                        // var spanID = document.createElement("span");
-                        // var spanTitulo = document.createElement("span");
-                        // var spanNome = document.createElement("span");
-                        // var divDescricao = document.createElement("div");
-                        // var divButtons = document.createElement("div");
-                        // var btnEditar = document.createElement("button");
-                        // var btnDeletar = document.createElement("button");
-
-
-                        // spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        // spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        // spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        // divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        // btnEditar.innerHTML = "Editar";
-                        // btnDeletar.innerHTML = "Deletar";
-
-                        // divPublicacao.className = "publicacao";
-                        // spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        // spanNome.className = "publicacao-nome";
-                        // spanTitulo.className = "publicacao-titulo";
-                        // divDescricao.className = "publicacao-descricao";
-
-                        // divButtons.className = "div-buttons"
-
-                        // btnEditar.className = "publicacao-btn-editar"
-                        // btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        // btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        // btnDeletar.className = "publicacao-btn-editar"
-                        // btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        // btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        // divPublicacao.appendChild(spanID);
-                        // divPublicacao.appendChild(spanNome);
-                        // divPublicacao.appendChild(spanTitulo);
-                        // divPublicacao.appendChild(divDescricao);
-                        // divPublicacao.appendChild(divButtons);
-                        // divButtons.appendChild(btnEditar);
-                        // divButtons.appendChild(btnDeletar);
-                        // feed.appendChild(divPublicacao);
                     }
 
                     finalizarAguardar();
