@@ -15,7 +15,7 @@
     <script src="../js/modalCV.js"></script>
 </head>
 
-<body onload="validarSessao(), atualizarFeed()">
+<body onload="validarSessao()">
 
     <div class="janela">
         <div class="header-left">
@@ -168,15 +168,24 @@
             </div>
 
             <div class="social social--dash" style="justify-content: flex-start">
-                <h3 class="titulo-dashboard">Showcase</h3>
+                <div style="align-items: flex-start; flex-direction: column; margin: 26px 0px;;">
+                    <span class="titulo-dashboard" style="margin-top: 30px;">Showcase</span>
+                    <select name="" id="filtroTipo" oninput="atualizarFeed()">
+                        <option value="col.data_adicao">Por Data</option>
+                        <option value="car.nome_set">Por Set</option>
+                        <option value="col.preco_ligaPkmn">Por Preço</option>
+                    </select>
+                    <select name="" id="filtroOrdem" oninput="atualizarFeed()">
+                        <option value="DESC">Decrescente</option>
+                        <option value="ASC">Crescente</option>
+                    </select>
+                </div>
                 <div id="cartas_colecao" class="feed-container">
                 </div>
             </div>
         </div>
     </div>
 </body>
-
-
 
 </html>
 
@@ -187,8 +196,19 @@
 
     function atualizarFeed() {
         let idUsuario = sessionStorage.getItem("ID_USER");
-
-        fetch(`/avisos/listar/colecao/${idUsuario}`).then(function (resposta) {
+        let tipo = document.getElementById('filtroTipo').value;
+        let ordem = document.getElementById('filtroOrdem').value;
+ 
+        fetch(`/avisos/listar/colecao/${idUsuario}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                filtroTipo: tipo,
+                filtroOrdem: ordem
+            })
+            }).then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -244,7 +264,6 @@
                                 </div>
 
                                     <div class="line-colecaoV"></div>
-                                
 
                                 <div class="carta-colecao">
                                     <img src="${carta.url_imagem}">
@@ -259,6 +278,8 @@
         }).catch(function (resposta) {
             console.error(resposta);
         });
-    }
+    };
+
+atualizarFeed();
 
 </script>

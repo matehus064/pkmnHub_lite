@@ -192,8 +192,10 @@ function listarPorUsuario(req, res) {
 
 function listar(req, res) {
     var idColecao = req.params.idColecao;
+    var filtroTipoServer = req.body.filtroTipo;
+    var filtrOrdemServer = req.body.filtroOrdem; 
 
-    avisoModel.listar(idColecao).then(function (resultado) {
+    avisoModel.listar(idColecao, filtrOrdemServer, filtroTipoServer).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

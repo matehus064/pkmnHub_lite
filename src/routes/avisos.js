@@ -7,7 +7,7 @@ router.get("/listar", function (req, res) {
     avisoController.listar(req, res);
 });
 
-router.get("/listar/colecao/:idColecao", function (req, res) {
+router.post("/listar/colecao/:idColecao", function (req, res) {
     avisoController.listar(req, res);
 });
 
