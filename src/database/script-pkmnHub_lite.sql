@@ -36,14 +36,14 @@ create table cartas (
     url_imagem VARCHAR(255)
 );
 
-create table colecao (
+CREATE TABLE colecao (
     fk_usuario INT,
     fk_carta INT,
     quantidade INT DEFAULT 1,
     preco_compra DECIMAL(10, 2),
     preco_ligaPkmn DECIMAL(10, 2),
-    data_adicao DATE DEFAULT (CURRENT_DATE),
+    data_adicao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (fk_usuario, fk_carta),
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
     FOREIGN KEY (fk_carta) REFERENCES cartas(id)
 );

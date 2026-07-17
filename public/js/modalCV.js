@@ -1,3 +1,5 @@
+    let alteracao = false;
+    
     function alterarModal(tipo) {
         let outroTipo = '';
         if (tipo === 'Compra') {
@@ -19,6 +21,10 @@
             modalAtual.style.display = "flex";
             botao.innerHTML = '<';
             outroBotao.innerHTML = '>';
+        }
+
+        if (modalOutro.style.display == "none" && modalAtual.style.display == "none" && alteracao == true) {
+            window.location.reload();
         }
     }
 
@@ -98,7 +104,7 @@
 
         document.getElementById(`ipt_nome${tipo}`).value = carta.name;
         document.getElementById(`ipt_set${tipo}`).value = carta.setNameEn;
-        document.getElementById(`img_carta${tipo}`).src = `https://images.scrydex.com/pokemon/${carta.setId}-${numCarta}/medium`;
+        document.getElementById(`img_carta${tipo}`).src = `https://images.scrydex.com/pokemon/${carta.setId}-${numCarta}/small`;
         document.getElementById(`img_carta${tipo}`).style.opacity = 1;
     }
 
@@ -133,10 +139,11 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + usuario + "!");
+                mensagemTemporizada(div_validacaoCompra, "<span style='color: #2ECC71'>Aquisição cadastrada com sucesso!</span>");
                 limparFormulario('Compra');
+                alteracao = true;
             } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+                mensagemTemporizada(div_validacaoCompra, "<span style='color: #EE3D2D'>Não foi possível realizar o cadastro, preencha todos os campos!</span>");
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
@@ -176,10 +183,11 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + usuario + "!");
-                limparFormulario('Compra');
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+                mensagemTemporizada(div_validacaoVenda, "<span style='color: #2ECC71'>Venda realizada com sucesso!</span>")
+                limparFormulario('Venda');
+                alteracao = true;
+            } else if (resposta.status == 404) { 
+                mensagemTemporizada(div_validacaoVenda, "<span style='color: #EE3D2D'>Não foi possível realizar o cadastro, preencha todos os campos!</span>");
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
