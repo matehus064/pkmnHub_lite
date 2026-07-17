@@ -3,7 +3,11 @@ var router = express.Router();
 
 var avisoController = require("../controllers/avisoController");
 
-router.get("/listar/:idColecao", function (req, res) {
+router.get("/listar", function (req, res) {
+    avisoController.listar(req, res);
+});
+
+router.get("/listar/colecao/:idColecao", function (req, res) {
     avisoController.listar(req, res);
 });
 

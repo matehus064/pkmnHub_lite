@@ -102,6 +102,8 @@
     
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    let idUsuario = sessionStorage.getItem('ID_USER');
+
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
@@ -174,7 +176,7 @@
     }
 
     function atualizarFeed() {
-        fetch("/avisos/listar").then(function (resposta) {
+        fetch(`/avisos/listar/colecao/${idUsuario}`).then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
