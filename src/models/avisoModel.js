@@ -4,16 +4,17 @@ function listar(usuarioColecao) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucaoSql = `
        SELECT 
-        b.url_imagem, 
-        b.nome_pokemon, 
-        b.set_nome, 
-        b.numero_set, 
-        c.quantidade, 
-        c.preco_compra, 
-        c.preco_ligaPkmn 
-    FROM base_cards b 
-    INNER JOIN colecao c ON c.fk_carta = b.id 
-    INNER JOIN usuario u ON c.fk_usuario = u.id 
+        car.url_imagem, 
+        car.nome_carta, 
+        car.nome_set, 
+        car.numero_set, 
+        col.quantidade, 
+        col.preco_compra, 
+        col.preco_ligaPkmn,
+        col.data_adicao
+    FROM cartas car
+    INNER JOIN colecao col ON col.fk_carta = car.id 
+    INNER JOIN usuario u ON col.fk_usuario = u.id 
     WHERE u.id = ${usuarioColecao};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

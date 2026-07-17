@@ -98,9 +98,12 @@ body {
 }
 
 .div-results .feed-container {
-  background-color: #212124;
-  border-radius: 5px;
-  margin-bottom: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+    align-content: flex-start;
+    justify-content: center;
 }
 
 /* pagina graficos */
