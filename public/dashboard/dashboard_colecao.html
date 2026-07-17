@@ -15,7 +15,7 @@
     <script src="../js/modalCV.js"></script>
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+<body onload="validarSessao(), atualizarFeed()">
 
     <div class="janela">
         <div class="header-left">
@@ -169,12 +169,15 @@
 
             <div class="social social--dash" style="justify-content: flex-start">
                 <h3 class="titulo-dashboard">Showcase</h3>
-                    <div id="cartas_colecao" class="feed-container">
-                    </div>
+                <div id="cartas_colecao" class="feed-container">
+                </div>
             </div>
         </div>
     </div>
 </body>
+
+
+
 </html>
 
 <script>
@@ -207,38 +210,46 @@
                         let [ano, mes, dia] = dataFormatada.split('-');
 
                         cartas_colecao.innerHTML += `
-                        <div class="box box--destaque"
-                            style="flex-direction: row; width: 500px; heigth: 280px; justify-content: space-between;">
-                            <div class="infos" style="max-width: 50%; min-height: 100%; position: relative; justify-content: center;">
-                                <span class="texto" style="">Data de adição: ${dia}/${mes}/${ano}</span>
-                                <a
-                                    href="https://www.ligapokemon.com.br/?view=cards%2Fsearch&tipo=1&card=${carta.nome_carta}+%28${carta.numero_set.split('/')[0]}%2F${carta.numero_set.split('/')[1]}%29">
-                                    <h3 class="preco" style="margin-bottom: 5px" ; font-size: 23px;>${carta.nome_carta}
-                                        (${carta.numero_set})
-                                    </h3>
+                            <div class="box-colecao">
+                                <div class="dados-colecao">
+                                    <a
+                                        href="https://www.ligapokemon.com.br/?view=cards%2Fsearch&tipo=1&card=${carta.nome_carta}+%28${carta.numero_set.split('/')[0]}%2F${carta.numero_set.split('/')[1]}%29">
+                                        <h3 class="nome-texto">${carta.nome_carta}</h3>
+                                    </a>
                                 
-                                </a>
-                                <span class="texto">${carta.nome_set}</span>
-                                <div class="line" style="width: 100%; height: 2px; margin-bottom: 5px; margin-top: 5px"></div>
-                                <div style="display: flex; flex-direction: row;">
-                                    <span class="texto" style="margin-right: 5px">Quantidade:</span>
-                                    <span class="nome-destaque" style="font-size: 14px; font-weight: 900;">${carta.quantidade}</span>
-                                </div>
-                                <div style="display: flex; width: 100%; gap: 15px; justify-content: space-between;">
-                                    <div style="display: flex; flex-direction: column;">
-                                        <span class="texto" style="margin-bottom: 5px">Valor pago:</span>
-                                        <span class="nome-destaque" style="font-weight: 900;">R$ ${carta.preco_compra}</span>
+                                    <div class="texto-row">
+                                        <span class="set-texto">${carta.nome_set}</span>
+                                        <span class="set-texto">•</span>
+                                        <span class="set-texto">${carta.numero_set}</span>
                                     </div>
-                                    <div style="display: flex; flex-direction: column;">
-                                        <span class="texto" style="margin-bottom: 5px">Valor de mercado:</span>
-                                        <span class="nome-destaque" style="font-weight: 900;">R$ ${carta.preco_ligaPkmn}</span>
+                                
+                                    <div class="line-colecaoH"></div>
+                                    
+                                    <div class="texto-row">
+                                        <span class="label-texto">Quantidade:</span>
+                                        <span class="info-texto">${carta.quantidade}</span>
                                     </div>
+                                
+                                    <div class="texto-row">
+                                        <span class="label-texto">Valor pago:</span>
+                                        <span class="info-texto">R$ ${carta.preco_compra}</span>
+                                    </div>
+                                
+                                    <div class="texto-row">
+                                        <span class="label-texto">Valor de mercado:</span>
+                                        <span class="info-texto">R$ ${carta.preco_ligaPkmn}</span>
+                                    </div>
+                                
+                                    <span class="texto" style="align-self: center;">${dia}/${mes}/${ano}</span>
                                 </div>
-                            </div>
-                            <div class="infos" style="gap: 0; position: relative; justify-content: center;">
-                                <img style="min-width: 100%; border-radius: 0;" src="${carta.url_imagem}">
-                            </div>
-                        </div>
+
+                                    <div class="line-colecaoV"></div>
+                                
+
+                                <div class="carta-colecao">
+                                    <img src="${carta.url_imagem}">
+                                </div>
+                            </div>  
                         `
                     }
                 });
