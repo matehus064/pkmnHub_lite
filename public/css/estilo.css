@@ -258,15 +258,11 @@ a img {
   width: 170px;
 }
 
-.social .container .boxes {
+.social .container {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 30px 0;
-}
-
-.boxes {
-  gap: 24px;
 }
 
 .social p {
@@ -294,7 +290,6 @@ a img {
 .box--destaque {
   width: 100%;
   background-color: #1a1c1f;
-  /* border-top: 3px solid #F9CF30; */
   border-left: none;
 }
 
@@ -322,7 +317,6 @@ a img {
   font-size: 14px;
   color: #94a3b8;
 }
-
 
 /* FOOTER */
 
@@ -427,24 +421,10 @@ a img {
   width: 75%;
 }
 
-
 .login .container {
   justify-content: center;
   align-items: center;
   height: 100%;
-}
-
-.card {
-  width: 50%;
-  background-color: #121417;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  color: #F9CF30;
-  flex-direction: column;
-  height: fit-content;
-  padding: 20px 0;
 }
 
 .header-link {
@@ -465,11 +445,6 @@ a img {
   height: 4px;
   background-color: #F9CF30;
   margin-bottom: 60px;
-}
-
-.card h2 {
-  margin: 0;
-  font-size: 30px;
 }
 
 .campos span {
@@ -557,52 +532,10 @@ a img {
   color: #F9CF30;
 }
 
-.botao--sidebar {
-  font-weight: 200;
-  font-size: 15px;
-  width: 100%;
-  margin-top: 0;
-  background-color: transparent;
-  border: #F9CF30 1px solid;
-  color: #F9CF30;
-}
-
-.div-circulo {
-  cursor: pointer;
-  width: 10px !important;
-  height: 10px !important;
-  border-radius: 50% !important;
-  font-weight: 200;
-  margin: 10px;
-  background-color: transparent;
-  border: #F9CF30 1px solid;
-  color: #F9CF30;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.div-circulo--ativo {
-  background-color: #F9CF30;
-  border: #F9CF30 1px solid;
-  color: #F9CF30;
-}
-
-.loading-div {
-  width: 50px;
-  display: none;
-}
-
-.loading-div img {
-  height: 50px;
-  width: 50px;
-}
-
 #div_erros_login {
   display: none
 }
 
-/* FORMULARIO */
 
 .alerta_erro {
   display: none;
@@ -634,12 +567,7 @@ a img {
   box-sizing: border-box;
 }
 
-.card_erro #mensagem_erro {
-  font-weight: 500;
-  font-size: 20px;
-}
-
-.formulario .tipo_campo {
+.formulario {
   font-size: 20px;
   font-weight: 600 !important;
 }
@@ -647,90 +575,6 @@ a img {
 .formulario {
   display: flex;
   flex-direction: column;
-}
-
-.loading-div {
-  width: 50px;
-  margin: auto;
-  display: none;
-}
-
-.loading-div img {
-  height: 50px;
-  width: 50px;
-}
-
-/* SIMULADOR */
-
-.simulador {
-  color: white;
-}
-
-.simulador .container {
-  flex-direction: column;
-  overflow: scroll;
-  height: var(--tamanho-simulador);
-}
-
-/* ALERTA */
-
-#alerta {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.mensagem-alarme {
-  background-color: white;
-  border-radius: 5px;
-  width: 300px;
-  height: 80px;
-  margin: 10px;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.mensagem-alarme h3 {
-  font-size: 14px;
-  margin: 0;
-}
-
-.mensagem-alarme .informacao {
-  width: 66%;
-}
-
-.alarme-sino {
-  width: 48px;
-  height: 48px;
-  animation-name: bell;
-  animation-duration: 4s;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
-  background-size: cover;
-  animation-iteration-count: infinite;
-}
-
-@keyframes bell {
-  0% {
-    transform: rotate(25deg)
-  }
-
-  25% {
-    transform: rotate(-25deg)
-  }
-
-  50% {
-    transform: rotate(25deg)
-  }
-
-  75% {
-    transform: rotate(-25deg)
-  }
-
-  100% {
-    transform: rotate(25deg)
-  }
 }
 
 .line--sidebar {
