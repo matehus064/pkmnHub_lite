@@ -15,7 +15,8 @@ function listar(usuarioColecao) {
     FROM cartas car
     INNER JOIN colecao col ON col.fk_carta = car.id 
     INNER JOIN usuario u ON col.fk_usuario = u.id 
-    WHERE u.id = ${usuarioColecao};
+    WHERE u.id = ${usuarioColecao}
+    ORDER BY col.data_adicao DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

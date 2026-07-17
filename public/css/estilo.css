@@ -608,20 +608,21 @@ a img {
   display: none;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 250px;
   height: 100vh;
+  width: calc(100% - 250px);
   z-index: 999;
-  width: 100%;
-  background-color: #121417bc; 
+  background-color: #121417bc;
 }
 
 .card_erro {
   background-color: #1a1c1f;
   color: black;
   width: 75%;
-  position: absolute;
+  max-width: 1100px;
   border-radius: 25px;
-  padding: 10px;
   height: 75vh;
   display: flex;
   flex-direction: row;
@@ -630,6 +631,7 @@ a img {
   padding: 3%;
   gap: 15px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .card_erro #mensagem_erro {

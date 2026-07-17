@@ -30,6 +30,7 @@
                 </div>
                 <div class="line line--sidebar"></div>
                 <a class="header-link" href="./dashboard.html">Dashboard</a>
+                <a class="header-link" href="./dashboard_colecao.html">Showcase</a>
                 <a class="header-link" onclick="alterarModal('Compra')">Compra <span id="compra"
                         class="seta">></span></a>
                 <a class="header-link" onclick="alterarModal('Venda')">Venda <span id="venda" class="seta">></span></a>
@@ -51,6 +52,125 @@
         </div>
 
         <div class="dash">
+            <div id="modalCompra" class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <div class="campos">
+                        <h3 class="titulo-formulario">Cadastre sua Aquisição</h3>
+                        <div class="row">
+                            <div class="campo">
+                                <span>Numero:</span>
+                                <input type="text" id="ipt_numeroCompra" placeholder="Ex: 054/191"
+                                    oninput="validandoImagem(ipt_numeroCompra, ipt_setCompra, 'Compra')">
+                            </div>
+                            <div class="campo">
+                                <button onclick="limparFormulario('Compra')" class="campos-button botao-vazado"
+                                    style="margin-top: 17px;">LIMPAR</button>
+                            </div>
+                        </div>
+                        <div class="line" style="width: 100%; height: 2px; margin-bottom: 20px;"></div>
+
+                        <div class="row">
+                            <div class="campo">
+                                <span>Nome da Carta</span>
+                                <input type="text" id="ipt_nomeCompra" placeholder="Ex: Charizard ex">
+                            </div>
+                            <div class="campo">
+                                <span>Expansão (Set)</span>
+                                <input type="text" id="ipt_setCompra" placeholder="Ex: Heróis Excelsos"
+                                    oninput="validandoImagem(ipt_numeroCompra, ipt_setCompra, 'Compra')">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="campo">
+                                <span>QNT.</span>
+                                <input type="number" id="ipt_qtdCompra" min="1" value="1">
+                            </div>
+                            <div class="campo">
+                                <span>MENOR DA LIGA (R$)</span>
+                                <input type="number" id="ipt_precoLigaCompra" value="0" min="0" step="1.00"
+                                    placeholder="0.00">
+                            </div>
+                            <div class="campo">
+                                <span>VALOR DE COMPRA (R$)</span>
+                                <input type="number" id="ipt_valorCompra" value="0" min="0" step="1.00"
+                                    placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <button class="campos-button" style="margin-top: 6px;" onclick="publicar(), atualizarFeed()">Cadastrar</button>
+                        <div id="div_validacaoCompra"></div>
+                    </div>
+
+                    <div class="imagem-login imagem-login--compra"
+                        style="height: 100%; width: 75%; justify-content: center; gap: 15px;">
+                        <img src="https://images.scrydex.com/pokemon/me7-96/medium" style="width: 75%; opacity: 0;"
+                            id="img_cartaCompra">
+                        <div class="wrapper-start">
+                            <h3 class="nome-destaque">Instruções:</h3>
+                            <span class="texto">Preencha somente o campo de numeração e valores, caso seja necessário
+                                será solicitado outros campos.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalVenda" class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <div class="campos">
+                        <h3 class="titulo-formulario">Cadastre sua Venda</h3>
+                        <div class="row">
+                            <div class="campo">
+                                <span>Numero:</span>
+                                <input type="text" id="ipt_numeroVenda" placeholder="Ex: 054/191"
+                                    oninput="validandoImagem(ipt_numeroVenda, ipt_setVenda, 'Venda')">
+                            </div>
+                            <div class="campo">
+                                <span>QNT.</span>
+                                <input type="number" id="ipt_qtdVenda" min="1" value="1">
+                            </div>
+                        </div>
+                        <div class="line" style="width: 100%; height: 2px; margin-bottom: 20px;"></div>
+
+                        <div class="row">
+                            <div class="campo">
+                                <span>Nome da Carta</span>
+                                <input type="text" id="ipt_nomeVenda" placeholder="Ex: Charizard ex">
+                            </div>
+                            <div class="campo">
+                                <span>Expansão (Set)</span>
+                                <input type="text" id="ipt_setVenda" placeholder="Ex: Heróis Excelsos"
+                                    oninput="validandoImagem(ipt_numeroVenda, ipt_setVenda, 'Venda')">
+                            </div>
+                            <div class="campo">
+                                <span>LIGA (R$)</span>
+                                <input type="number" id="ipt_precoLigaVenda" value="0" min="0" step="1.00"
+                                    placeholder="0.00">
+                            </div>
+                            <div class="campo">
+                                <span>VENDA (R$)</span>
+                                <input type="number" id="ipt_valorVenda" value="0" min="0" step="1.00"
+                                    placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <button class="campos-button" style="margin-top: 6px;" onclick="deletar(), atualizarFeed()  ">Cadastrar</button>
+                        <div id="div_validacaoVenda"></div>
+                    </div>
+
+                    <div class="imagem-login imagem-login--venda"
+                        style="height: 100%; width: 75%; justify-content: center; gap: 15px;">
+                        <img src="https://images.scrydex.com/pokemon/me7-96/medium" style="width: 75%; opacity: 0;"
+                            id="img_cartaVenda">
+                        <div class="wrapper-start">
+                            <h3 class="nome-destaque">Instruções:</h3>
+                            <span class="texto">Preencha somente o campo de numeração e valores, caso seja necessário
+                                será solicitado outros campos.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="social social--dash" style="justify-content: flex-start">
                 <h3 class="titulo-dashboard">Showcase</h3>
                     <div id="cartas_colecao" class="feed-container">
@@ -60,6 +180,9 @@
     </div>
 </body>
 </html>
+
+<script src="../js/dadosCartas.js"></script>
+<script src="../js/modalCV.js"></script>
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
@@ -125,8 +248,6 @@
                         </div>
                         `
                     }
-
-                    finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
