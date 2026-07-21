@@ -170,15 +170,16 @@
             <div class="social social--dash" style="justify-content: flex-start">
                 <div style="align-items: flex-start; flex-direction: column; margin: 26px 0px;;">
                     <span class="titulo-dashboard" style="margin-top: 30px; margin-right: 10px;">Showcase</span>
-                    <select name="" id="filtroTipo" class="filtro-select" oninput="carregando(), atualizarFeed()">
+                    <select name="" id="filtroTipo" class="filtro-select">
                         <option value="col.data_adicao">Por Data</option>
                         <option value="car.nome_set">Por Set</option>
                         <option value="col.preco_ligaPkmn">Por Preço</option>
                     </select>
-                    <select name="" id="filtroOrdem" class="filtro-select" oninput="carregando(), atualizarFeed()">
+                    <select name="" id="filtroOrdem" class="filtro-select">
                         <option value="DESC">Decrescente</option>
                         <option value="ASC">Crescente</option>
                     </select>
+                    <button class="filtro-botão" onclick="carregando(), atualizarFeed()">Filtrar</button>
                 </div>
                 <div id="cartas_colecao" class="feed-container">
                 </div>

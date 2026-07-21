@@ -169,3 +169,16 @@ width: 210px;
     cursor: pointer;
     outline: none;
 }
+
+.filtro-botão {
+    background: #F9CF30;
+    border: 1px solid #F9CF30;
+    color: #121417;
+    padding: 8px 14px 8px 14px;
+    border-radius: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
