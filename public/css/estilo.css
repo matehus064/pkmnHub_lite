@@ -638,3 +638,24 @@ a img {
   margin-bottom: -5px;
 
 }
+
+.div-circulo {
+  cursor: pointer;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  font-weight: 200;
+  margin: 10px;
+  background-color: transparent;
+  border: #F9CF30 1px solid;
+  color: #F9CF30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.div-circulo--ativo {
+  background-color: #F9CF30;
+  border: #F9CF30 1px solid;
+  color: #F9CF30;
+}

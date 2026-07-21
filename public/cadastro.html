@@ -9,6 +9,7 @@
   <title>pkmnHub_lite | Cadastro</title>
 
   <script src="./js/sessao.js"></script>
+  <script src="./js/modalCV.js"></script>
 
   <link rel="stylesheet" href="./css/estilo.css" />
   <link rel="icon" href="./assets/imgs/main/logo2.png">
@@ -62,15 +63,23 @@
           </div>
         </div>
         <div class="row" style="margin-bottom: 6px;">
-          <img src="./assets/imgs/profilePics/1.webp" onclick="numFotoPerfil = 1">
-          <img src="./assets/imgs/profilePics/2.webp" onclick="numFotoPerfil = 2">
-          <img src="./assets/imgs/profilePics/3.webp" onclick="numFotoPerfil = 3">
-          <img src="./assets/imgs/profilePics/4.webp" onclick="numFotoPerfil = 4">
-          <img src="./assets/imgs/profilePics/5.webp" onclick="numFotoPerfil = 5">
-          <img src="./assets/imgs/profilePics/6.webp" onclick="numFotoPerfil = 6">
+          <img src="./assets/imgs/profilePics/1.webp" onclick="selecaoFotoPerfil(1)">
+          <img src="./assets/imgs/profilePics/2.webp" onclick="selecaoFotoPerfil(2)">
+          <img src="./assets/imgs/profilePics/3.webp" onclick="selecaoFotoPerfil(3)">
+          <img src="./assets/imgs/profilePics/4.webp" onclick="selecaoFotoPerfil(4)">
+          <img src="./assets/imgs/profilePics/5.webp" onclick="selecaoFotoPerfil(5)">
+          <img src="./assets/imgs/profilePics/6.webp" onclick="selecaoFotoPerfil(6)">
+        </div>
+        <div class="row" id="circulo_posicao" style="width: 100%; justify-content: space-around;">
+          <div id="circulo01" class="div-circulo"></div>
+          <div id="circulo02" class="div-circulo"></div>
+          <div id="circulo03" class="div-circulo"></div>
+          <div id="circulo04" class="div-circulo"></div>
+          <div id="circulo05" class="div-circulo"></div>
+          <div id="circulo06" class="div-circulo"></div>
         </div>
         <button class="campos-button" style="margin-top: 6px;" onclick="cadastrar()">Cadastrar</button>
-        <span id="mensagem_erro">Confirmação da Senha:</span>
+        <span id="mensagem_erro"></span>
       </div>
     </div>
 
@@ -99,6 +108,21 @@
 <script>
   let numFotoPerfil = 0;
 
+  function selecaoFotoPerfil(numero) {
+    numFotoPerfil = numero;
+    circulo_posicao.innerHTML = '';
+
+    for (let i = 0; i < 6; i++) {
+      if (i != numero - 1) {
+        circulo_posicao.innerHTML +=
+          `<div class="div-circulo"></div>`
+      } else {
+        circulo_posicao.innerHTML +=
+          `<div class="div-circulo div-circulo--ativo"></div>`
+      }
+    }
+  }
+
   function cadastrar() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -112,10 +136,11 @@
       username == "" ||
       email == "" ||
       senha == "" ||
-      confirmacao == ""
+      confirmacao == "" ||
+      numFotoPerfil == 0
     ) {
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+
+      mensagemTemporizada(mensagem_erro, "<span style='color: #EE3D2D'>Por favor, preencha todos os campos para iniciar sua jornada!</span>");
 
       return false;
     }
