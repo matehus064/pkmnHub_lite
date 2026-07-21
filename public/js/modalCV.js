@@ -198,10 +198,10 @@
         return false;
     }
 
-        function alterarModalCarta() {
-        let imagem = img_maisCara.src;
+        function alterarModalCarta(imagem) {
+        let imagemSrc = imagem.src;
 
-        img_modalCarta.src = imagem.replace("small", "large");
+        img_modalCarta.src = imagemSrc.replace("small", "large");
 
         if (modalCarta.style.display == "flex") {
             modalCarta.style.display = "none";

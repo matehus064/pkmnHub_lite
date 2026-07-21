@@ -167,6 +167,11 @@
                 </div>
             </div>
 
+            <div id="modalCarta" class="alerta_erro" style="flex-direction: column;">
+                <img id="img_modalCarta" src="" width="400px">
+                <button class="filtro-botão" style="margin-top: 15px;" onclick="modalCarta.style.display = 'none'">Fechar</button>
+            </div>
+
             <div class="social social--dash" style="justify-content: flex-start">
                 <div style="align-items: flex-start; flex-direction: column; margin: 26px 0px;;">
                     <span class="titulo-dashboard" style="margin-top: 30px; margin-right: 10px;">Showcase</span>
@@ -276,7 +281,7 @@
                                     <div class="line-colecaoV"></div>
 
                                 <div class="carta-colecao">
-                                    <img src="${carta.url_imagem}">
+                                    <img id="imag_n${i}" src="${carta.url_imagem}" onclick="alterarModalCarta(imag_n${i})">
                                 </div>
                             </div>  
                         `
