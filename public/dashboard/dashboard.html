@@ -171,6 +171,11 @@
                 </div>
             </div>
 
+            <div id="modalCarta" class="alerta_erro" style="flex-direction: column;">
+                <img id="img_modalCarta" src="https://images.scrydex.com/pokemon/sv10-233/large" width="400px">
+                <button class="filtro-botão" style="margin-top: 15px;" onclick="alterarModalCarta()">Fechar</button>
+            </div>
+
             <div class="social social--dash">
                 <h3 class="titulo-dashboard">Hub de Desempenho</h3>
 
@@ -183,7 +188,7 @@
                         </div>
                     </div>
 
-                    <div class="box box--destaque" style="flex-direction: row;">
+                    <div class="box box--destaque" style="flex-direction: row;" onclick="alterarModalCarta()">
                         <div class="infos">
                             <h3 class="nome-destaque">Carta mais cara</h3>
                             <span id="nome_maisCara" class="texto"></span>
@@ -232,6 +237,7 @@
         </div>
     </div>
 </body>
+
 </html>
 
 <script>

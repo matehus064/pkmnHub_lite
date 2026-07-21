@@ -197,3 +197,15 @@
 
         return false;
     }
+
+        function alterarModalCarta() {
+        let imagem = img_maisCara.src;
+
+        img_modalCarta.src = imagem.replace("small", "large");
+
+        if (modalCarta.style.display == "flex") {
+            modalCarta.style.display = "none";
+        } else {
+            modalCarta.style.display = "flex";
+        }
+    }
