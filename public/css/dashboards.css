@@ -68,6 +68,11 @@ canvas {
   box-sizing: border-box;
 }
 
+.activate {
+  font-weight: 900 !important;
+  color: #FFF !important;
+}
+
 /*===================================
 |             SHOWCASE:             |
 ===================================*/

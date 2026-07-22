@@ -29,7 +29,7 @@
                     <h1 class="titulo">pkmnHub lite</h1>
                 </div>
                 <div class="line line--sidebar"></div>
-                <a class="header-link" href="./dashboard.html">Dashboard</a>
+                <a class="header-link activate" href="./dashboard.html">Dashboard</a>
                 <a class="header-link" href="./dashboard_colecao.html">Showcase</a>
                 <a class="header-link" onclick="alterarModal('Compra')">Compra <span id="compra"
                         class="seta">></span></a>
@@ -172,8 +172,8 @@
             </div>
 
             <div id="modalCarta" class="alerta_erro" style="flex-direction: column;">
-                <img id="img_modalCarta" src="https://images.scrydex.com/pokemon/sv10-233/large" width="400px">
-                <button class="filtro-botão" style="margin-top: 15px;" onclick="alterarModalCarta()">Fechar</button>
+                <img id="img_modalCarta" src="" width="400px">
+                <button class="filtro-botão" style="margin-top: 15px;" onclick="alterarModalCarta(img_maisCara)">Fechar</button>
             </div>
 
             <div class="social social--dash">
@@ -188,7 +188,7 @@
                         </div>
                     </div>
 
-                    <div class="box box--destaque" style="flex-direction: row;" onclick="alterarModalCarta()">
+                    <div class="box box--destaque" style="flex-direction: row;" onclick="alterarModalCarta(img_maisCara)">
                         <div class="infos">
                             <h3 class="nome-destaque">Carta mais cara</h3>
                             <span id="nome_maisCara" class="texto"></span>
